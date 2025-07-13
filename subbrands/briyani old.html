@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biryani Brand Name - A Royal Biryani Experience</title>
+
+    <!-- Google Fonts: Cormorant Garamond for headings, Montserrat for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Root Variables for Easy Theming --- */
+        :root {
+            --gold: #D4AF37;
+            --orange: #FF6B35;
+            --dark-brown: #2a1a10;
+            --text-light: #f0e6d8;
+            --text-dark: #333;
+            --bg-light: #fff;
+            --bg-texture-url: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5BEQAADIIwz/Ab6c1A2g1g25c4AcELuAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsAALsACvAQB2A1V8Z2a+AAAAAElFTkSuQmCC');
+        }
+
+        /* --- Global & Reset Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--dark-brown);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .order-btn {
+            background: var(--orange);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .order-btn:hover {
+            background: #E55A2B;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(15, 10, 5, 0.7), rgba(15, 10, 5, 0.7)),
+                url('https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=2787&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+
+        .hero-content h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-content .brand-name {
+            color: var(--gold);
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #E55A2B;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--text-dark);
+        }
+
+        /* --- Universal Section Styling --- */
+        .section {
+            padding: 6rem 0;
+            overflow: hidden; /* For animations */
+        }
+        
+        .section-dark {
+            background-color: var(--dark-brown);
+            background-image: var(--bg-texture-url);
+            color: var(--text-light);
+        }
+
+        .section-light {
+            background-color: #fdfaf5;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #999;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-dark .section-header p {
+            color: rgba(240, 230, 216, 0.7);
+        }
+
+
+        /* --- Story Section --- */
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .story-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: rgba(240, 230, 216, 0.85);
+        }
+
+        .story-image {
+            text-align: center;
+        }
+        .story-image svg {
+            width: 80%;
+            max-width: 350px;
+            height: auto;
+            fill: var(--gold);
+            opacity: 0.2;
+        }
+
+        /* --- Menu Section --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .menu-card-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3a2a1a, var(--dark-brown));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-card-image svg {
+            width: 80px;
+            height: 80px;
+            fill: var(--gold);
+            opacity: 0.8;
+            transition: transform 0.4s ease;
+        }
+        .menu-card:hover .menu-card-image svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .menu-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+        }
+
+        .menu-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .menu-card .price {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.4rem;
+            align-self: flex-end;
+        }
+
+        /* --- Features Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--gold);
+        }
+
+        .feature-icon {
+            margin-bottom: 1.5rem;
+        }
+        .feature-icon svg {
+             width: 50px;
+             height: 50px;
+             fill: var(--gold);
+        }
+
+        .feature-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--orange), var(--gold));
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-btn {
+            background: white; 
+            color: var(--orange); 
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .cta-btn:hover {
+            background: var(--text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: rgba(240, 230, 216, 0.7);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(240, 230, 216, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(240, 230, 216, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .story-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .story-image {
+                grid-row: 1; /* Image appears first on mobile */
+            }
+            .story-image svg {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--bg-light);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.4s ease-in-out;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .order-btn {
+                display: none; /* Can be moved inside hamburger menu if needed */
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .btn {
+                width: 80%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Brand Logo</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <button class="order-btn" onclick="orderNow()">Order Now</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content fade-in is-visible">
+                <h1>Taste the Legacy of a <span class="brand-name">Royal Recipe</span></h1>
+                <p class="hero-tagline">Authentic Mughal Biryani, Once Reserved for Emperors.</p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" onclick="orderNow()">Order Your Feast</button>
+                    <button class="btn btn-secondary" onclick="scrollToMenu()">View Menu</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark" id="story">
+            <div class="container">
+                <div class="story-content">
+                    <div class="story-text fade-in">
+                        <h2>The Royal Legacy, Reimagined</h2>
+                        <p>Ever craved the lavish, aromatic biryanis fit for a Mughal court? We brings that royalty to your table. Our recipes are passed down through generations, a secret blend of tradition and passion.</p>
+                        <p>We use fragrant, aged basmati rice, pure desi ghee, and a symphony of hand-ground spices to create a biryani that is both comforting and luxurious. Skip the hassle and dive into a flavour-packed experience that tastes like a grand celebration.</p>
+                    </div>
+                    <div class="story-image fade-in">
+                        <!-- Elegant SVG ornament -->
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M100,5.5c-3.8,0-7.4,1.4-10.2,3.8C86,11.8,83.9,15.1,83,18.8c-2.4,10.1-9,18.7-18.8,21.1c-3.7,0.9-7,3-9.5,6.1 c-2.5,3.1-3.8,7-3.8,11.1c0,10.6,8.6,19.2,19.2,19.2h0.2c-5,8.8-5,19.6,0,28.4h-0.2c-10.6,0-19.2,8.6-19.2,19.2s8.6,19.2,19.2,19.2 h0.2c-5,8.8-5,19.6,0,28.4h-0.2c-10.6,0-19.2,8.6-19.2,19.2c0,4.1,1.3,8,3.8,11.1c2.5,3.1,5.8,5.2,9.5,6.1 c9.8,2.4,16.4,11,18.8,21.1c0.9,3.7,3,7,6.1,9.5c2.8,2.4,6.4,3.8,10.2,3.8s7.4-1.4,10.2-3.8c3.1-2.5,5.2-5.8,6.1-9.5 c2.4-10.1,9-18.7,18.8-21.1c3.7-0.9,7-3,9.5-6.1c2.5-3.1,3.8-7,3.8-11.1c0-10.6-8.6-19.2-19.2-19.2h-0.2c5-8.8,5-19.6,0-28.4 h0.2c10.6,0,19.2-8.6,19.2-19.2S146.4,80.8,135.8,80.8h-0.2c5-8.8,5-19.6,0-28.4h0.2c10.6,0,19.2-8.6,19.2-19.2 c0-4.1-1.3-8-3.8-11.1c-2.5-3.1-5.8-5.2-9.5-6.1c-9.8-2.4-16.4-11-18.8-21.1c-0.9-3.7-3-7-6.1-9.5C107.4,6.9,103.8,5.5,100,5.5z M100,16.1c1.4,0,2.7,0.5,3.7,1.4c1.1,1,1.9,2.3,2.2,3.8c2.9,12.1,12.5,21.7,24.6,24.6c1.5,0.4,2.8,1.1,3.8,2.2 c1,1,1.7,2.3,1.7,3.9c0,5.3-4.3,9.6-9.6,9.6h-43.2c-5.3,0-9.6-4.3-9.6-9.6c0-1.6,0.7-2.9,1.7-3.9c1-1.1,2.3-1.8,3.8-2.2 c12.1-2.9,21.7-12.5,24.6-24.6c0.4-1.5,1.1-2.8,2.2-3.8C97.3,16.6,98.6,16.1,100,16.1z M100,89.6c-4.4,0-8,3.6-8,8s3.6,8,8,8 s8-3.6,8-8S104.4,89.6,100,89.6z M56.8,140.4h86.4c5.3,0,9.6,4.3,9.6,9.6c0,1.6-0.7,2.9-1.7,3.9c-1,1.1-2.3,1.8-3.8,2.2 c-12.1,2.9-21.7,12.5-24.6,24.6c-0.4,1.5-1.1,2.8-2.2,3.8c-1.1,1-2.3,1.4-3.7,1.4s-2.7-0.5-3.7-1.4c-1.1-1-1.9-2.3-2.2-3.8 c-2.9-12.1-12.5-21.7-24.6-24.6c-1.5-0.4-2.8-1.1-3.8-2.2c-1-1-1.7-2.3-1.7-3.9C47.2,144.7,51.5,140.4,56.8,140.4z"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light" id="menu">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Our Royal Menu</h2>
+                    <p>Each dish is a masterpiece, crafted with passion and the finest ingredients.</p>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <!-- Mutton Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.6,3.3C15.1,2.5,13.4,2,11.5,2C6.3,2,2,6.3,2,11.5S6.3,21,11.5,21c4.2,0,7.9-2.3,9.8-5.7c0.1-0.2,0.1-0.4,0-0.6 c-0.1-0.2-0.3-0.3-0.5-0.3c-0.4,0-1.2,0.1-2.4,0.1c-3.3,0-6-2.7-6-6s2.7-6,6-6c1.2,0,2,0.1,2.4,0.1c0.2,0,0.4-0.1,0.5-0.3 C22.1,3.4,22.1,3.2,22,3C21.1,2.2,19.6,1.9,18,2.5c-0.9,0.3-1.8,0.8-2.6,1.3C14.6,4.3,14,4.2,13.4,4c-0.4-0.1-0.8-0.2-1.2-0.2 c0.3-0.6,0.6-1.2,0.9-1.7C13.5,1.5,13.1,1,12.5,1S11.5,1.5,11.2,2.1C10.9,2.6,10.6,3.2,10.3,3.8c-0.4,0-0.8,0.1-1.2,0.2 c-0.6,0.1-1.2,0.3-1.8,0.8c-0.9-0.5-1.7-1-2.6-1.3C4.4,1.9,2.9,2.2,2,3c-0.1,0.2-0.1,0.4,0,0.6c0.1,0.2,0.3,0.3,0.5,0.3 c0.4,0,1.2-0.1,2.4-0.1c3.3,0,6,2.7,6,6s-2.7,6-6,6c-1.2,0-2-0.1-2.4-0.1c-0.2,0-0.4,0.1-0.5,0.3c-0.1,0.2-0.1,0.4,0,0.6 C4.1,19.7,7.8,22,11.5,22c5.2,0,9.5-4.3,9.5-9.5c0-1.9-0.5-3.6-1.5-5.1C20.4,6.5,21,5.6,21,4.5C21,4.1,20.6,3.8,20.2,3.8 c-1.2,0-2.2,0.8-2.6,1.9c-0.5-0.3-1-0.5-1.5-0.7C16.6,4.3,17,3.8,17,3.2C17,3.3,16.8,3.3,16.6,3.3z"/></svg>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3>Mughlai Mutton Biryani</h3>
+                            <p>Tender, succulent mutton pieces slow-cooked (dum) with fragrant basmati rice and our secret spice blend.</p>
+                            <div class="price">₹449</div>
+                        </div>
+                    </div>
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <!-- Chicken Icon -->
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.8,9.3c-0.2-0.8-0.6-1.5-1.2-2.1c-1.2-1.2-2.8-1.7-4.4-1.2c-0.8,0.2-1.5,0.7-2.1,1.2c-0.4-0.6-0.9-1.2-1.5-1.6 C10.2,4.7,8.7,4.6,7.3,5.1C5.9,5.7,4.8,6.8,4.2,8.2c-0.3,0.6-0.4,1.3-0.4,2c0,1.1,0.4,2.2,1.1,3c-0.5,0.6-0.8,1.3-1,2.1 c-0.3,1.5,0.1,3,1.1,4.2c0.7,0.8,1.7,1.3,2.7,1.3c0.4,0,0.7-0.1,1.1-0.2c1.1-0.4,2-1.2,2.5-2.3c0.6,0.3,1.3,0.5,2,0.5 s1.4-0.2,2-0.5c0.5,1,1.4,1.9,2.5,2.3c0.4,0.1,0.7,0.2,1.1,0.2c1,0,2-0.5,2.7-1.3c1-1.2,1.4-2.8,1.1-4.2c-0.2-0.8-0.5-1.5-1-2.1 C20.4,11.5,20.8,10.4,20.8,9.3z M12,10c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S13.1,10,12,10z"/></svg>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3>Hyderabadi Chicken Biryani</h3>
+                            <p>A classic favorite. Juicy chicken marinated in yogurt and spices, layered with saffron-infused rice.</p>
+                            <div class="price">₹399</div>
+                        </div>
+                    </div>
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <!-- Veg Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.2,9.7c-0.4-0.4-0.8-0.7-1.3-1c-0.3-1.1-0.8-2.2-1.5-3.1c-1-1.3-2.5-2.1-4.1-2.1c-0.8,0-1.6,0.2-2.3,0.6 C11.3,3.3,10.6,2.8,9.7,2.8C7.6,2.8,6,4.4,6,6.5c0,0.9,0.3,1.7,0.9,2.4C6.6,9,6.3,9.1,6,9.2C4,9.7,2.8,11.4,2.8,13.5 c0,0.8,0.2,1.6,0.6,2.3C4.2,16.5,4.7,17.2,5.3,18c-0.8,0.6-1.3,1.5-1.3,2.5c0,1.7,1.4,3,3,3c0.9,0,1.7-0.4,2.2-1 c0.7,0.2,1.5,0.4,2.3,0.4s1.6-0.1,2.3-0.4c0.5,0.6,1.3,1,2.2,1c1.7,0,3-1.4,3-3c0-1-0.5-1.9-1.3-2.5c0.6-0.7,1.1-1.5,1.3-2.3 c0.4-0.7,0.6-1.5,0.6-2.3C22.8,11.4,22.2,10.3,21.2,9.7z M15,13.5c0,1.9-1.6,3.5-3.5,3.5S8,15.4,8,13.5S9.6,10,11.5,10 S15,11.6,15,13.5z"/></svg>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3>Subz-e-Biryani (Veg)</h3>
+                            <p>A medley of fresh, seasonal vegetables and paneer cooked with aromatic spices and long-grain rice.</p>
+                            <div class="price">₹329</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>The Shahi Promise</h2>
+                    <p>Experience the difference that quality and tradition make.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <!-- Rice Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.4,8.9c-0.1-0.2-0.2-0.3-0.2-0.5c0-0.2,0-0.5,0-0.7c0-1-0.2-2-0.6-2.9c-0.7-1.8-2-3.2-3.7-4C16,0.3,15,0,13.9,0 c-0.6,0-1.2,0.1-1.8,0.4C11.6,0.1,11,0,10.4,0C8.1,0,6.2,1.9,6.2,4.2c0,0.9,0.3,1.7,0.8,2.4c-1.5,0.4-2.8,1.2-3.8,2.4 C2.2,10.2,1.6,11.6,1.6,13c0,0.3,0,0.6,0.1,0.8c0.1,0.6,0.2,1.2,0.4,1.8c0.9,2.4,2.9,4.3,5.4,5.1C8,21.5,8.8,22,9.6,22.4 c0.5,0.2,1,0.4,1.5,0.5c0.2,0,0.3,0.1,0.5,0.1h0.1c0.1,0,0.1,0,0.2,0C12,23,12,24,12.8,24c0.8,0,0.8-1,0.9-1.1 c0.1,0,0.1,0,0.2,0h0.1c0.2,0,0.3-0.1,0.5-0.1c0.5-0.1,1-0.3,1.5-0.5c0.8-0.4,1.5-0.9,2.1-1.5c2.5-2.4,3.8-5.7,3.8-9.2 C22.4,9.9,22,9.3,21.4,8.9z"/></svg>
+                        </div>
+                        <h3>Aged Basmati Rice</h3>
+                        <p>Only the finest long-grain, aromatic basmati, aged to perfection for a fluffy, non-sticky texture.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <!-- Ghee Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,6h-2.3c-0.5-1.7-1.5-3.2-2.9-4.2C13.2,0.7,11.4,0,9.5,0C4.3,0,0,4.3,0,9.5C0,14.7,4.3,19,9.5,19 c2.7,0,5.2-1.1,7-2.9V19c0,2.8,2.2,5,5,5s5-2.2,5-5V9.5C26.5,7.4,23.6,6,20,6z M9.5,17C5.4,17,2,13.6,2,9.5S5.4,2,9.5,2 c1.4,0,2.8,0.4,3.9,1.2C12.3,4,11.5,5.1,11.1,6.3c-0.1,0.2-0.1,0.5-0.1,0.7c0,1.7,1.3,3,3,3h2.3c2.9,0,5.2,1.1,5.2,2.5 c0,1.1-1.3,2-3.2,2.3V13c0-1.7-1.3-3-3-3s-3,1.3-3,3v2C11,16.1,10.3,16.6,9.5,17z"/></svg>
+                        </div>
+                        <h3>Pure Desi Ghee</h3>
+                        <p>Our biryani is enriched with traditional clarified butter, lending it a nutty aroma and authentic flavor.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <!-- Spices Icon -->
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.9,9.6c-0.2-0.1-0.4-0.3-0.6-0.4C19,8.5,18.6,7.8,18.1,7c-0.7-1.2-1.8-2.1-3.1-2.5c-0.3-0.1-0.6-0.2-0.9-0.2 c-0.6,0-1.1,0.2-1.6,0.5c-0.3-0.3-0.6-0.5-1-0.7C10.6,3.8,9.7,3.6,8.8,3.8c-1.3,0.3-2.4,1.2-2.9,2.4c-0.3,0.6-0.4,1.2-0.4,1.8 c0,0.8,0.2,1.5,0.6,2.2c-0.3,0.3-0.6,0.5-1,0.7C4.1,11.2,3.2,12.3,3.2,13.6c0,0.6,0.2,1.1,0.5,1.6c-0.3,0.3-0.5,0.6-0.7,1 c-0.5,0.9-0.7,1.9-0.5,2.9c0.3,1.3,1.2,2.4,2.4,2.9c0.6,0.3,1.2,0.4,1.8,0.4c0.8,0,1.5-0.2,2.2-0.6c0.3,0.3,0.5,0.6,0.7,1 c0.5,0.9,1.4,1.6,2.5,1.8c0.1,0,0.2,0,0.3,0c0.6,0,1.1-0.2,1.6-0.5c0.3,0.3,0.6,0.5,1,0.7c0.9,0.5,1.9,0.7,2.9,0.5 c1.3-0.3,2.4-1.2,2.9-2.4c0.3-0.6,0.4-1.2,0.4-1.8c0-0.8-0.2-1.5-0.6-2.2c0.3-0.3,0.6-0.5,1-0.7c0.9-0.5,1.6-1.4,1.8-2.5 C20.6,11.2,20.4,10.3,19.9,9.6z M12,15.5c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S13.9,15.5,12,15.5z"/></svg>
+                        </div>
+                        <h3>Royal Spice Blend</h3>
+                        <p>A secret, hand-ground mix of exotic spices like saffron, cardamom, and mace for that signature taste.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <!-- Cooking Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,0C7.9,0,4.4,2.5,2.4,6.2C2.1,6.8,2,7.4,2,8c0,1,0.3,1.9,0.8,2.8C1.1,11.5,0,13.1,0,15c0,3.3,2.7,6,6,6 c0.7,0,1.3-0.1,1.9-0.3c1,1.5,2.7,2.3,4.6,2.3s3.6-0.8,4.6-2.3c0.6,0.2,1.2,0.3,1.9,0.3c3.3,0,6-2.7,6-6c0-1.9-1.1-3.5-2.8-4.2 C21.7,9.9,22,9,22,8c0-0.6-0.1-1.2-0.4-1.8C19.6,2.5,16.1,0,12,0z M6,19c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S8.2,19,6,19z M12,4 c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,4,12,4z M18,19c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S20.2,19,18,19z"/></svg>
+                        </div>
+                        <h3>'Dum Pukht' Cooking</h3>
+                        <p>Our biryani is slow-cooked in a sealed pot, allowing the flavors to meld together perfectly.</p>
+                    </div>
+                     <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <!-- Quality Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0z M10.8,17.2l-4.6-4.6c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0 l3.9,3.9l7.3-7.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4L10.8,17.2z"/></svg>
+                        </div>
+                        <h3>Quality Assurance</h3>
+                        <p>From sourcing fresh ingredients to hygienic preparation, we maintain the highest standards of quality.</p>
+                    </div>
+                     <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <!-- Delivery Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.8,10.2c-0.1-0.3-0.4-0.5-0.7-0.5H21V8.5c0-0.8-0.7-1.5-1.5-1.5H16V3.5C16,1.6,14.4,0,12.5,0h-10C1.6,0,0,1.6,0,3.5V17 c0,1.1,0.9,2,2,2h1.5c0,1.7,1.3,3,3,3s3-1.3,3-3H15c0,1.7,1.3,3,3,3s3-1.3,3-3h1c0.6,0,1-0.4,1-1v-5.7C24,10.8,23.9,10.5,23.8,10.2 z M6.5,20.5c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5S7.3,20.5,6.5,20.5z M14,7h4v3h-4V7z M18,20.5 c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5S18.8,20.5,18,20.5z"/></svg>
+                        </div>
+                        <h3>Prompt Delivery</h3>
+                        <p>Your royal feast, delivered hot and fresh to your doorstep, preserving its authentic aroma and taste.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" id="contact">
+            <div class="container fade-in">
+                <h2>Ready to Feast Like Royalty?</h2>
+                <p>Don't just eat, celebrate. Order your Shahi Biryani now and experience a taste of history.</p>
+                <button class="btn cta-btn" onclick="orderNow()">
+                    ORDER NOW & TASTE THE LEGACY
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section section-dark">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section fade-in">
+                    <h3>Brand Name</h3>
+                    <p>Bringing the authentic taste of royal Mughal cuisine to your doorstep. Experience the legacy of flavors that once graced the tables of emperors.</p>
+                </div>
+                <div class="footer-section fade-in">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section fade-in">
+                    <h3>Contact Info</h3>
+                    <p>📱 +91 98188 74886</p>
+                    <p>📧 maheshwarikalash@outlook.com</p>
+                    <p>📍 Delhi, India</p>
+                </div>
+                <div class="footer-section fade-in">
+                    <h3>Delivery Hours</h3>
+                    <p>Monday - Sunday</p>
+                    <p>11:00 AM - 11:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom fade-in">
+                <p>&copy; 2025 {Trademark Name}. All Rights Reserved. | A Royal Biryani Experience, Delivered.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Hamburger Menu Toggle ---
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- Order Now Function ---
+        function orderNow() {
+            alert('Thank you for choosing our Brand!\n\nTo place your order, please call us at: +91 98188 74886\n\nTaste the Legacy! 👑');
+            // In a real scenario, you might redirect to a Swiggy/Zomato page.
+            // window.open("https://zomato.com/your-restaurant", "_blank"); 
+        }
+
+        // --- Scroll to Menu Function ---
+        function scrollToMenu() {
+            document.getElementById('menu').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // --- Scroll-triggered Fade-in Animations ---
+        const faders = document.querySelectorAll('.fade-in');
+        
+        const appearOptions = {
+            threshold: 0.2, // item is 20% visible
+            rootMargin: "0px 0px -50px 0px" // trigger a little early
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{brand name} - {tagline}</title>
+  <meta name="description" content="{description}" />
+  <meta name="keywords" content="multi-cuisine, food delivery, global flavors, {tagline}, {brand name}" />
+  <meta name="author" content="{brand name}" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{brand name} - {tagline}" />
+  <meta property="og:description" content="{one liner}" />
+  <meta property="og:image" content="/images/{brand logo}" />
+  <meta property="og:url" content="{brand url}" />
+
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet" />
+  <style>
+    /* Hover animation for Foodies, Assemble! heading */
+    #welcome-title {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #welcome-title:hover {
+      transform: scale(1.1) rotate(3deg);
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Food emoji burst animation */
+    .food-emoji {
+      position: fixed;
+      pointer-events: none;
+      font-size: 24px;
+      z-index: 10000;
+      animation: burst 1s forwards ease-out;
+    }
+
+    @keyframes burst {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.5);
+      }
+    }
+
+    /* Firework particle animation with glow */
+    .firework-particle {
+      position: fixed;
+      pointer-events: none;
+      width: 6px;
+      height: 6px;
+      background-color: #ffca28;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 5px rgba(255, 202, 40, 0.8);
+      z-index: 10001;
+      animation: fireworkBurst 1s forwards ease-out;
+    }
+
+    @keyframes fireworkBurst {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx, 0), var(--ty, 0)) scale(2);
+      }
+    }
+
+    /* Add bottom navbar styles */
+    .bottom-navbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 60px;
+      background: #181818;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .bottom-navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: color 0.2s;
+    }
+
+    .bottom-navbar a:hover,
+    .bottom-navbar a:focus {
+      color: #ffca28;
+    }
+
+    .bottom-navbar i {
+      font-size: 1.3rem;
+    }
+
+    @media (min-width: 900px) {
+      .bottom-navbar {
+        display: none;
+      }
+    }
+
+    .bg-video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+    /* Hide sidebar and logo on phone view (max-width: 900px) */
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none !important;
+      }
+
+      .sidebar .logo {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <video id="bgVideo" autoplay muted loop playsinline
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;">
+        <source src="bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="bg-video-overlay"></div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="hover-zone" id="hoverZone"></div>
+
+  <div class="sidebar" id="sidebar" tabindex="0">
+    <div class="logo">BrandLogo</div>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="brands.html"><i class="fas fa-store"></i><span>Menu</span></a>
+      <a href="about.html"><i class="fas fa-info-circle"></i><span>About Us</span></a>
+      <a href="contact.html"><i class="fas fa-envelope"></i><span>Contact Us</span></a>
+    </nav>
+  </div>
+  <div class="page-darken-overlay"></div>
+  <div id="themeFadeOverlay" class="theme-fade-overlay"></div>
+
+  <main id="main-content">
+    <header class="hero box-fade-in" role="banner">
+      <h1 class="animated-text box-fade-in">Cloud Kitchen Brand</h1>
+      <p class="box-fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus eum corporis unde, quas commodi quisquam.</p>
+    </header>
+
+    <section class="welcome-section box-fade-in" aria-labelledby="welcome-title">
+      <div class="title-wrapper">
+        <h2 id="welcome-title" class="welcome-main-title box-fade-in" tabindex="0">
+          click me!
+        </h2>
+      </div>
+      <div class="modern-heading box-fade-in">Lorem ipsum dolor consectetur.</div>
+      <div class="welcome-description box-fade-in">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit dolor voluptatum perspiciatis ad sed veniam reprehenderit. Animi fugit est cumque sit optio ullam consequatur aut quaerat amet, facere officiis rerum!
+      </div>
+      <a href="{order url}" class="order-button box-fade-in" target="_blank">Order Now</a>
+    </section>
+
+    <div class="brand-modal" id="brandModal">
+      <div class="brand-modal-content" id="brandModalContent">
+        <button class="brand-modal-close" id="brandModalClose" aria-label="Close">&times;</button>
+        <img id="brandModalLogo" src="" alt="{brand logo}" />
+        <h3 id="brandModalTitle">{brand name}</h3>
+        <p id="brandModalDesc">{description}</p>
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+      <p>&copy; 2025 {Trademark Name}. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <nav class="bottom-navbar">
+    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="brands.html"><i class="fas fa-store"></i><span>Menu</span></a>
+    <a href="about.html"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </nav>
+
+  <script src="./js/main.js" defer></script>
+    <script>
+    document.getElementById("welcome-title").addEventListener("click", function () {
+      // Generate at least 5 random burst origins, avoiding boundaries (50px margin)
+      const burstsCount = 5;
+      const margin = 50;
+      const origins = [];
+      for (let j = 0; j < burstsCount; j++) {
+        origins.push({
+          x: margin + Math.random() * (window.innerWidth - 2 * margin),
+          y: margin + Math.random() * (window.innerHeight - 2 * margin)
+        });
+      }
+      origins.forEach(origin => {
+        // Food emoji burst at this origin
+        const foodEmojis = ["🍕", "🍔", "🍟", "🍣", "🌭", "🍦"];
+        for (let i = 0; i < 6; i++) {
+          const emoji = document.createElement("span");
+          emoji.classList.add("food-emoji");
+          emoji.textContent = foodEmojis[i] || "🍕";
+          emoji.style.left = (origin.x - 12) + "px";
+          emoji.style.top = (origin.y - 12) + "px";
+          const angle = Math.random() * 2 * Math.PI;
+          const distance = 100 + Math.random() * 50;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+          emoji.style.setProperty("--tx", tx + "px");
+          emoji.style.setProperty("--ty", ty + "px");
+          document.body.appendChild(emoji);
+          emoji.addEventListener("animationend", function () {
+            emoji.remove();
+          });
+        }
+        // Firework particle burst at this origin
+        for (let i = 0; i < 12; i++) {
+          const particle = document.createElement("span");
+          particle.classList.add("firework-particle");
+          particle.style.left = (origin.x - 3) + "px";
+          particle.style.top = (origin.y - 3) + "px";
+          const angle = Math.random() * 2 * Math.PI;
+          const distance = 80 + Math.random() * 40;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+          particle.style.setProperty("--tx", tx + "px");
+          particle.style.setProperty("--ty", ty + "px");
+          const colors = ['#ff5252', '#ffca28', '#40c4ff', '#69f0ae', '#ea80fc'];
+          particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          particle.style.boxShadow = `0 0 10px 5px ${particle.style.backgroundColor}`;
+          document.body.appendChild(particle);
+          particle.addEventListener("animationend", function () {
+            particle.remove();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Indian Food Brand - Modern North Indian Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* --- Refined & Softer Color Palette --- */
+            --primary: #E87A5D;
+            /* Warmer, richer terracotta orange */
+            --primary-dark: #D96C4E;
+            --secondary: #1F1A17;
+            /* Warm, dark charcoal instead of pure black */
+            --accent: #F9D423;
+            /* Softer, golden yellow */
+            --accent-dark: #F8B500;
+            --text-light: #F0EAD6;
+            /* Soft, parchment-like off-white */
+            --text-dark: #2C2825;
+            --text-muted: #9A9483;
+            --glass: rgba(240, 234, 214, 0.05);
+            --glass-strong: rgba(240, 234, 214, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--secondary) 0%, #2c1810 100%);
+            --border-radius: 20px;
+            --border-radius-small: 12px;
+            /* --- Smoother, more elegant transition --- */
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: #fcfaf5;
+            /* A very light cream background for sections */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            cursor: none;
+            /* Hide default cursor */
+        }
+
+        /* --- Custom Cursor --- */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        .custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(232, 122, 93, 0.2);
+        }
+
+        .custom-cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: transparent;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav.scrolled {
+            background: rgba(31, 26, 23, 0.85);
+            /* Use warm charcoal */
+            backdrop-filter: blur(15px);
+            padding: 0.8rem 2rem;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid rgba(240, 234, 214, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav.scrolled .logo {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            width: 30px;
+            height: 25px;
+            position: relative;
+        }
+
+        .mobile-menu-toggle .bar {
+            width: 100%;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 3px;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .bar.top {
+            top: 0;
+        }
+
+        .bar.middle {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bar.bottom {
+            bottom: 0;
+        }
+
+        .nav-open .bar.top {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .nav-open .bar.middle {
+            opacity: 0;
+        }
+
+        .nav-open .bar.bottom {
+            bottom: 50%;
+            transform: translateY(50%) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(31, 26, 23, 0.85) 0%, rgba(44, 24, 16, 0.9) 100%),
+                url('asset/thumbnail.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.06;
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.06;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.1;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 2rem;
+            animation: hero-entrance 1.2s ease-out;
+            transition: transform 0.2s ease-out;
+            /* For mouse parallax */
+        }
+
+        @keyframes hero-entrance {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-weight: 900;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .hero .accent-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            animation: text-shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes text-shimmer {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: rgba(240, 234, 214, 0.8);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fade-in-up 1s ease-out 0.3s both;
+        }
+
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-in-up 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--border-radius-small);
+            cursor: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(232, 122, 93, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(232, 122, 93, 0.4);
+        }
+
+        .cta-button i {
+            margin-right: 0.5rem;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: 0 8px 25px rgba(249, 212, 35, 0.2);
+        }
+
+        .cta-secondary:hover {
+            background: var(--accent);
+            color: var(--secondary);
+            box-shadow: 0 15px 35px rgba(249, 212, 35, 0.3);
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10%,
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #menu {
+            background-color: #fcfaf5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .dish-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+            transform-style: preserve-3d;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px) perspective(1000px) rotateX(2deg) rotateY(2deg);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .dish-image {
+            height: 250px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            overflow: hidden;
+        }
+
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .dish-card:hover .dish-image img {
+            transform: scale(1.1);
+        }
+
+        .dish-content {
+            padding: 2rem;
+        }
+
+        .dish-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .dish-card:hover h3 {
+            color: var(--primary);
+        }
+
+        .dish-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .dish-price {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(31, 26, 23, 0.7);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        .dish-card:hover .dish-price {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--secondary);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .experience .section-title {
+            color: var(--text-light);
+        }
+
+        .experience .section-subtitle {
+            color: rgba(240, 234, 214, 0.8);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(240, 234, 214, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            background: var(--glass-strong);
+            border-color: rgba(232, 122, 93, 0.3);
+        }
+
+        .experience-icon {
+            font-size: 2.5rem;
+            margin: 0 auto 2rem;
+            transition: var(--transition);
+            color: var(--accent);
+        }
+
+        .experience-card:hover .experience-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .experience-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card p {
+            color: rgba(240, 234, 214, 0.8);
+            font-weight: 400;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Order Section */
+        .order-section {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .order-section .section-title {
+            color: var(--text-dark);
+        }
+
+        .order-section .section-subtitle {
+            color: rgba(44, 40, 37, 0.8);
+        }
+
+        .order-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .order-btn {
+            background: var(--secondary);
+            color: var(--accent);
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: var(--border-radius-small);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(31, 26, 23, 0.3);
+        }
+
+        .order-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(31, 26, 23, 0.4);
+            background: var(--primary);
+            color: white;
+        }
+
+        .order-btn:hover i {
+            color: white;
+        }
+
+        .order-btn i {
+            transition: var(--transition);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: var(--text-light);
+            padding: 6rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(240, 234, 214, 0.1);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(240, 234, 214, 0.1);
+            opacity: 0.6;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.1;
+            animation: float 25s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+            transition: transform 0.2s ease-out;
+            /* For mouse parallax */
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+            }
+        }
+
+        .floating-1 {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            top: 70%;
+            right: 12%;
+            animation-delay: 8s;
+        }
+
+        .floating-3 {
+            top: 45%;
+            left: 85%;
+            animation-delay: 16s;
+        }
+
+        .floating-4 {
+            top: 25%;
+            right: 25%;
+            animation-delay: 4s;
+        }
+
+        .floating-5 {
+            top: 80%;
+            left: 30%;
+            animation-delay: 12s;
+        }
+
+        /* Scroll Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .custom-cursor,
+            .custom-cursor-dot {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                /* Start off-screen */
+                width: 70%;
+                height: 100vh;
+                background: var(--secondary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.8rem, 10vw, 4rem);
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section-title {
+                font-size: clamp(2.2rem, 8vw, 3rem);
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-buttons,
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .order-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">BrandLogo</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#stats">About</a></li>
+                <li><a href="#order">Order</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                <span class="bar top"></span>
+                <span class="bar middle"></span>
+                <span class="bar bottom"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Elements -->
+    <div class="floating-element floating-1" data-speed="0.2">🌶️</div>
+    <div class="floating-element floating-2" data-speed="-0.1">⭐</div>
+    <div class="floating-element floating-3" data-speed="0.15">🌿</div>
+    <div class="floating-element floating-4" data-speed="-0.25">🔥</div>
+    <div class="floating-element floating-5" data-speed="0.1">✨</div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>
+                A Taste of <span class="accent-text glow-text">Tradition</span>
+            </h1>
+            <p class="subtitle">
+                Where ancient recipes dance with modern innovation, creating a symphony of flavors that awakens the
+                soul.
+            </p>
+            <div class="hero-buttons">
+                <button class="cta-button" onclick="scrollToSection('order')">
+                    <i class="fas fa-utensils"></i> Order Now
+                </button>
+                <button class="cta-button cta-secondary" onclick="scrollToSection('menu')">
+                    <i class="fas fa-book-open"></i> Explore Menu
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Culinary Masterpieces</h2>
+                <p class="section-subtitle">
+                    Each dish tells a story of heritage and passion, crafted with the finest ingredients and
+                    time-honored techniques.
+                </p>
+            </div>
+
+            <div class="menu-grid" data-stagger-parent>
+                <!-- Dish cards now use img tags. Replace placeholder URLs with your actual images. -->
+                <div class="dish-card animate-on-scroll" data-stagger-child>
+                    <div class="dish-image"><img
+                            src="https://media.istockphoto.com/id/1253934130/photo/mutton-masala-curry-in-plastic-container-for-home-delivery.jpg?s=612x612&w=0&k=20&c=KQTQTS9RK7f4wt1_ZgRuvFsUMvc2MP1GF3yQqgaVShQ="
+                            alt="Rogan Josh"></div>
+                    <div class="dish-content">
+                        <div class="dish-price">₹450</div>
+                        <h3>Royal Kashmiri Rogan Josh</h3>
+                        <p>Succulent lamb slow-cooked in a rich, aromatic gravy of traditional Kashmiri spices, saffron,
+                            and yogurt.</p>
+                    </div>
+                </div>
+
+                <div class="dish-card animate-on-scroll" data-stagger-child>
+                    <div class="dish-image"><img
+                            src="https://media.istockphoto.com/id/639389404/photo/authentic-indian-food.jpg?s=612x612&w=0&k=20&c=gbfAu17L1gtHmuo5biByhfCefAtYUtGQpyxMmi9_Mus="
+                            alt="Butter Chicken"></div>
+                    <div class="dish-content">
+                        <div class="dish-price">₹380</div>
+                        <h3>Signature Butter Chicken</h3>
+                        <p>Tender tandoori chicken in a velvety tomato-cream sauce with a hint of fenugreek and
+                            smokiness.</p>
+                    </div>
+                </div>
+
+                <div class="dish-card animate-on-scroll" data-stagger-child>
+                    <div class="dish-image"><img
+                            src="https://media.istockphoto.com/id/1292629539/photo/paneer-tikka-masala-is-a-famous-indian-dish-served-over-a-rustic-wooden-background-selective.jpg?s=612x612&w=0&k=20&c=GCvoJ3lBcvvRJmeENmSpa_7rLkh_1OKPaM6gKNYqUGM="
+                            alt="Paneer Tikka"></div>
+                    <div class="dish-content">
+                        <div class="dish-price">₹350</div>
+                        <h3>Artisan Paneer Tikka Masala</h3>
+                        <p>House-made paneer grilled to perfection and simmered in a rich, creamy tomato-based sauce
+                            with bell peppers.</p>
+                    </div>
+                </div>
+
+                <div class="dish-card animate-on-scroll" data-stagger-child>
+                    <div class="dish-image"><img
+                            src="https://media.istockphoto.com/id/669635320/photo/kidney-bean-curry-or-rajma-or-rajmah-chawal-and-roti-typical-north-indian-main-course.jpg?s=612x612&w=0&k=20&c=3ir3vZKHa2oPXkpEKHLbWPAPF1yhxRCyr4DIew41pzg="
+                            alt="Heritage Rajma Chawal"></div>
+                    <div class="dish-content">
+                        <div class="dish-price">₹320</div>
+                        <h3>Heritage Rajma Chawal</h3>
+                        <p>Premium kidney beans simmered in a luscious tomato-onion gravy, served with fragrant basmati
+                            rice. This comfort food classic is elevated with our secret blend of spices and cooking
+                            techniques.</p>
+                    </div>
+                </div>
+
+                <div class="dish-card animate-on-scroll" data-stagger-child>
+                    <div class="dish-image"><img
+                            src="https://media.istockphoto.com/id/1428711983/photo/pindi-chole-or-amritsari-chole-on-dark-wooden-background-top-view-copyspace.jpg?s=612x612&w=0&k=20&c=cBDz5CFqPFDfFwf3KDgMsRQqXifSriZxhBU3emhgWko="
+                            alt="Amritsari Pinde Chole"></div>
+                    <div class="dish-content">
+                        <div class="dish-price">₹280</div>
+                        <h3>Amritsari Pinde Chole</h3>
+                        <p>Authentic Punjabi chickpeas cooked with traditional spices and served with fluffy bhature or
+                            kulcha. This street food favorite is prepared using age-old recipes from the heart of
+                            Punjab.</p>
+                    </div>
+                </div>
+
+                <div class="dish-card animate-on-scroll" data-stagger-child>
+                    <div class="dish-image"><img
+                            src="https://media.istockphoto.com/id/1150376593/photo/bread-tandoori-indian-cuisine.jpg?s=612x612&w=0&k=20&c=GGT5LN7G4zLhJTEnP_KcyvYuayi8f1nJcvQwvmj0rCM="
+                            alt="Tandoor Fresh Breads"></div>
+                    <div class="dish-content">
+                        <div class="dish-price">₹180</div>
+                        <h3>Tandoor Fresh Breads</h3>
+                        <p>Hand-rolled naans, rotis, and parathas baked fresh in our traditional clay tandoor. Choose
+                            from plain, garlic, butter, or stuffed varieties, each with its own unique character and
+                            flavor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="stats-grid" data-stagger-parent>
+                <div class="stat-item animate-on-scroll" data-stagger-child>
+                    <span class="stat-number" data-count="10000">0</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-item animate-on-scroll" data-stagger-child>
+                    <span class="stat-number" data-count="50">0</span>
+                    <span class="stat-label">Signature Dishes</span>
+                </div>
+                <div class="stat-item animate-on-scroll" data-stagger-child>
+                    <span class="stat-number" data-count="5">0</span>
+                    <span class="stat-label">Years of Excellence</span>
+                </div>
+                <div class="stat-item animate-on-scroll" data-stagger-child>
+                    <span class="stat-number" data-count="25">0</span>
+                    <span class="stat-label">Master Chefs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">The North Indian Journey</h2>
+                <p class="section-subtitle">
+                    Immerse yourself in a culinary journey where every element is carefully orchestrated for an
+                    unforgettable experience.
+                </p>
+            </div>
+
+            <div class="experience-grid" data-stagger-parent>
+                <div class="experience-card animate-on-scroll" data-stagger-child>
+                    <div class="experience-icon">🌿</div>
+                    <h3>Premium Ingredients</h3>
+                    <p>We source the finest spices and freshest produce to ensure authenticity and exceptional quality
+                        in every dish.</p>
+                </div>
+                <div class="experience-card animate-on-scroll" data-stagger-child>
+                    <div class="experience-icon">🔥</div>
+                    <h3>Tandoor Mastery</h3>
+                    <p>Our traditional clay tandoor imparts a unique smoky flavor and perfect char to our breads and
+                        grilled items.</p>
+                </div>
+                <div class="experience-card animate-on-scroll" data-stagger-child>
+                    <div class="experience-icon">💎</div>
+                    <h3>Authentic Heritage</h3>
+                    <p>Every recipe is rooted in authentic Indian culinary traditions, passed down through generations
+                        and perfected over time.</p>
+                </div>
+                <div class="experience-card animate-on-scroll" data-stagger-child>
+                    <div class="experience-icon">⚡</div>
+                    <h3>Bold Flavor Profiles</h3>
+                    <p>Our master chefs expertly balance heat, sweetness, and aromatics to create complex flavor
+                        profiles that dance on your palate with every bite.</p>
+                </div>
+                <div class="experience-card animate-on-scroll" data-stagger-child>
+                    <div class="experience-icon">🏠</div>
+                    <h3>Comfort Redefined</h3>
+                    <p>Traditional home-style cooking elevated through modern techniques and presentation, bringing you the warmth of Indian hospitality.</p>
+                </div>
+                <div class="experience-card animate-on-scroll" data-stagger-child>
+                    <div class="experience-icon">🧑‍🍳</div>
+                    <h3>Culinary Artistry</h3>
+                    <p>Our team of experienced chefs combines generations of culinary wisdom with innovative cooking methods to create extraordinary dishes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="section order-section" id="order">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Begin Your Culinary Journey</h2>
+                <p class="section-subtitle">
+                    Experience the magic of North Indian cuisine, delivered fresh to your doorstep or ready for pickup.
+                </p>
+            </div>
+
+            <div class="order-buttons animate-on-scroll">
+                <button class="order-btn" onclick="orderDelivery()">
+                    <i class="fas fa-motorcycle"></i>
+                    <span>Order Delivery</span>
+                </button>
+                <button class="order-btn" onclick="orderPickup()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Order Pickup</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-logo">Brand Name</h3>
+            <p class="footer-description">
+                Where culinary traditions meet modern innovation. Passionate about bringing you the authentic
+                flavors of North India, crafted with love and served with pride.
+            </p>
+
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 {trademark name}. All rights reserved. | Crafted with ❤️ for food lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Custom Cursor ---
+            const cursor = document.querySelector('.custom-cursor');
+            const cursorDot = document.querySelector('.custom-cursor-dot');
+            const hoverables = document.querySelectorAll('a, button, .dish-card, .experience-card');
+
+            window.addEventListener('mousemove', e => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
+
+            hoverables.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+
+            // --- Navbar Scroll Effect ---
+            const nav = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // --- Smooth Scrolling ---
+            window.scrollToSection = function (sectionId) {
+                const element = document.getElementById(sectionId);
+                const navHeight = nav.offsetHeight;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+            };
+
+            // --- Mobile Menu Toggle ---
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navLinks = document.getElementById('navLinks');
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('nav-open');
+                navLinks.classList.toggle('active');
+            });
+
+            // --- Intersection Observer for Staggered Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.hasAttribute('data-stagger-parent')) {
+                            const children = entry.target.querySelectorAll('[data-stagger-child]');
+                            children.forEach((child, index) => {
+                                child.style.transitionDelay = (index * 150) + 'ms';
+                                child.classList.add('visible');
+                            });
+                        } else {
+                            entry.target.classList.add('visible');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll, [data-stagger-parent]').forEach(el => observer.observe(el));
+
+            // --- Mouse-Move Parallax Effect ---
+            const heroContent = document.querySelector('.hero-content');
+            const floatingElements = document.querySelectorAll('.floating-element');
+            window.addEventListener('mousemove', e => {
+                const { clientX, clientY } = e;
+                const x = (clientX / window.innerWidth - 0.5) * 2; // -1 to 1
+                const y = (clientY / window.innerHeight - 0.5) * 2; // -1 to 1
+
+                heroContent.style.transform = `translate(${x * -15}px, ${y * -15}px)`;
+
+                floatingElements.forEach(el => {
+                    const speed = parseFloat(el.dataset.speed) || 0.1;
+                    el.style.transform = `translate(${x * 20 * speed}px, ${y * 20 * speed}px)`;
+                });
+            });
+
+            // --- Particle System ---
+            const particlesContainer = document.getElementById('particles');
+            if (particlesContainer) {
+                for (let i = 0; i < 40; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.width = `${Math.random() * 3 + 1}px`;
+                    particle.style.height = particle.style.width;
+                    particle.style.animationDelay = `${Math.random() * 15}s`;
+                    particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // --- Smoother Counter Animation ---
+            function animateCounters() {
+                const counters = document.querySelectorAll('.stat-number');
+                const speed = 200; // Lower is faster
+
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-count');
+                    let current = 0;
+
+                    const updateCount = () => {
+                        const increment = target / speed;
+                        current += increment;
+
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current).toLocaleString();
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target.toLocaleString();
+                        }
+                    };
+                    updateCount();
+                });
+            }
+
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 }).observe(statsSection);
+            }
+        });
+
+        // --- Order Functions (placeholders) ---
+        function orderDelivery() { alert('Redirecting to our delivery partners...'); }
+        function orderPickup() { alert('Call us at +91 98188 74886 to place a pickup order!'); }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta description for SEO -->
+  <meta name="description"
+    content="Discover FoodCloud Kitchen - a digital hub that unites diverse food brands. Learn about our culinary vision, passion for quality, and our mission to revolutionize your dining experience." />
+  <title>Cloud Kitchen Brand</title>
+
+  <!-- Inline script to immediately set dark theme if needed -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-theme");
+        }
+      } catch (e) { }
+    })();
+  </script>
+
+  <!-- Add Font Awesome for sidebar icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --color-bg: #f8f5f0;
+      /* soft warm beige, soothing and food-friendly */
+      --color-text: #232323;
+      --color-card-bg: #fff;
+      --color-card-shadow: #5a3a1b;
+      --color-sidebar-bg: none;
+      --color-sidebar-text: #fff;
+      --color-brand-hover: #232323;
+      --color-brand-hover-text: #ffca28;
+      --color-footer: #777;
+      --color-modal-bg: #fff;
+      --color-modal-text: #232323;
+      --color-overlay: rgba(17, 17, 17, 0.75);
+    }
+
+    .dark-theme {
+      --color-bg: #181818;
+      --color-text: #f3f3f3;
+      --color-card-bg: #232323;
+      --color-card-shadow: #2d1a09;
+      --color-sidebar-bg: #181818;
+      --color-sidebar-text: #ffca28;
+      --color-brand-hover: #333;
+      --color-brand-hover-text: #ffca28;
+      --color-footer: #aaa;
+      --color-modal-bg: #232323;
+      --color-modal-text: #fff;
+      --color-overlay: rgba(17, 17, 17, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      background-image: linear-gradient(135deg, #fffbe6 0%, #f8f5f0 100%);
+      background-attachment: fixed;
+    }
+
+    .hover-zone {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 100vh;
+      z-index: 998;
+    }
+
+    .hover-zone::after {
+      display: none;
+    }
+
+    .sidebar {
+      width: 60px;
+      min-width: 60px;
+      max-width: 60px;
+      background: var(--color-sidebar-bg);
+      color: var(--color-sidebar-text);
+      padding: 30px 0 30px 0;
+      position: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      box-shadow: none;
+      z-index: 1001;
+      border: none;
+      left: 0;
+      top: 0;
+      transition: width 0.25s cubic-bezier(0.39, 0.58, 0.57, 1),
+        background 0.18s;
+    }
+
+    .sidebar:hover,
+    .sidebar:focus-within {
+      width: 220px;
+      min-width: 220px;
+      max-width: 220px;
+      background: none;
+      transition: width 0.25s cubic-bezier(0.39, 0.58, 0.57, 1),
+        background 0.18s;
+    }
+
+    .sidebar .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ffca28;
+      letter-spacing: 1px;
+      margin-left: 18px;
+      margin-bottom: 10px;
+      opacity: 1;
+      /* always visible */
+      transition: opacity 0.18s;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .sidebar:hover .logo,
+    .sidebar:focus-within .logo {
+      opacity: 1;
+      transition-delay: 0.1s;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .sidebar nav a {
+      color: var(--color-sidebar-text);
+      text-decoration: none;
+      padding: 12px 16px 12px 18px;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s, box-shadow 0.25s,
+        transform 0.18s cubic-bezier(0.39, 0.58, 0.57, 1);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar nav a::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 0.18s;
+      z-index: 0;
+    }
+
+    .sidebar nav a:hover::before {
+      opacity: 1;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+          #ffca28cc 0 30px,
+          transparent 60px);
+      transition: opacity 0.18s;
+    }
+
+    .sidebar nav a i {
+      margin-right: 0;
+      font-size: 20px;
+      min-width: 24px;
+      text-align: center;
+      transition: color 0.2s, text-shadow 0.2s;
+      color: #232323;
+      /* black for light mode */
+    }
+
+    .dark-theme .sidebar nav a i {
+      color: #ffca28;
+      /* gold for dark mode */
+    }
+
+    .sidebar nav a span {
+      opacity: 0;
+      margin-left: 0;
+      max-width: 0;
+      overflow: hidden;
+      display: inline-block;
+      white-space: nowrap;
+      transition: opacity 0.18s, margin-left 0.18s, max-width 0.18s;
+    }
+
+    .sidebar:hover nav a span,
+    .sidebar:focus-within nav a span {
+      opacity: 1;
+      margin-left: 12px;
+      max-width: 160px;
+      transition-delay: 0.08s;
+    }
+
+    .sidebar nav a:hover {
+      background: var(--color-brand-hover);
+      color: var(--color-brand-hover-text);
+      box-shadow: 0 0 16px 2px #ffca2880;
+      transform: translateX(12px) scale(1.04);
+    }
+
+    .sidebar nav a:hover i {
+      color: #ffca28;
+      text-shadow: 0 0 8px #ffca28cc;
+    }
+
+    .sidebar::after {
+      display: none !important;
+    }
+
+    .page-darken-overlay {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      background: linear-gradient(to right,
+          rgba(17, 17, 17, 0.75) 0%,
+          rgba(17, 17, 17, 0.45) 25%,
+          rgba(17, 17, 17, 0.2) 55%,
+          rgba(17, 17, 17, 0) 100%);
+      transition: opacity 0.25s;
+      opacity: 0;
+    }
+
+    .sidebar:hover~.page-darken-overlay,
+    .sidebar:focus-within~.page-darken-overlay {
+      display: block;
+      opacity: 1;
+    }
+
+    .main {
+      margin-left: 0;
+      padding: 40px;
+      max-width: 700px;
+      margin-right: auto;
+      margin-left: auto;
+      transition: none;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      color: #555;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.95em;
+      color: var(--color-footer);
+    }
+
+    /* Heading box */
+    .heading-box {
+      background: #eee;
+      color: #fff;
+      border-radius: 18px;
+      padding: 22px 0;
+      text-align: center;
+      font-size: 2.1em;
+      font-weight: bold;
+      margin: 30px auto 24px auto;
+      max-width: 600px;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      animation: bg-fade 0.45s ease-in forwards,
+        box-fade-in 0.7s cubic-bezier(0.39, 0.58, 0.57, 1) both;
+      opacity: 0;
+    }
+
+    /* About info box styles (same as contact-info-box) */
+    .about-info-box {
+      background: #ececec;
+      /* slightly darker light gray */
+      color: var(--color-text);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+      max-width: 600px;
+      margin: 0 auto 32px auto;
+      padding: 10px 28px 22px 28px;
+      text-align: center;
+      animation: box-fade-in 0.7s 0.15s cubic-bezier(0.39, 0.58, 0.57, 1) both;
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.39, 0.58, 0.57, 1),
+        box-shadow 0.25s;
+    }
+
+    .about-info-box:hover,
+    .heading-box:hover {
+      transform: translateY(-6px) scale(1.025);
+      box-shadow: 0 6px 24px rgba(75, 17, 45, 0.13),
+        0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes bg-fade {
+      0% {
+        background: rgba(238, 238, 238, 0.9);
+        color: #222;
+      }
+
+      70% {
+        background: rgba(124, 58, 83, 0.9);
+        /* plum, 10% translucent */
+        color: #fff;
+      }
+
+      100% {
+        background: rgba(75, 17, 45, 0.9);
+        /* dark plum, 10% translucent */
+        color: #fff;
+      }
+    }
+
+    @keyframes box-fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Theme toggle button styles - fixed top right */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      z-index: 2002;
+      margin: 0;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #ffca28;
+      color: #232323;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      outline: none;
+      box-shadow: 0 2px 8px #ffca2822;
+    }
+
+    .theme-toggle-btn:hover,
+    .theme-toggle-btn:focus {
+      background: #232323;
+      color: #ffca28;
+    }
+
+    .dark-theme .theme-toggle-btn {
+      background: #232323;
+      color: #ffca28;
+      box-shadow: 0 2px 8px #23232344;
+    }
+
+    .dark-theme .theme-toggle-btn:hover,
+    .dark-theme .theme-toggle-btn:focus {
+      background: #ffca28;
+      color: #232323;
+    }
+
+    .sidebar .theme-toggle-btn {
+      display: none !important;
+    }
+
+    /* Fade overlay for theme transition */
+    .theme-fade-overlay {
+      pointer-events: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-bg, #fff);
+      opacity: 0;
+      transition: opacity 0.45s cubic-bezier(0.39, 0.58, 0.57, 1);
+    }
+
+    .theme-fade-overlay.active {
+      opacity: 1;
+      transition: opacity 0.45s cubic-bezier(0.39, 0.58, 0.57, 1);
+    }
+
+    /* Fade background animation for theme transition */
+    .theme-bg-fade {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--color-bg, #fff);
+      transition: background-color 0.45s cubic-bezier(0.39, 0.58, 0.57, 1);
+    }
+
+    body.theme-fade-anim .theme-bg-fade {
+      /* triggers transition */
+    }
+
+    .about-info-box,
+    .heading-box {
+      background: #ececec;
+      /* slightly darker light gray */
+      color: var(--color-text);
+    }
+
+    .dark-theme .about-info-box,
+    .dark-theme .heading-box {
+      color: #f3f3f3;
+    }
+
+    .contact-form {
+      background: #ececec;
+      /* slightly darker light gray */
+      color: var(--color-text);
+    }
+
+    .dark-theme .contact-form {
+      color: #f3f3f3;
+    }
+
+    .dark-theme .about-info-box {
+      background: #232627;
+      color: #b2aca2;
+    }
+
+    .dark-theme .about-info-box h2 {
+      color: #c8c3bc !important;
+    }
+
+    .dark-theme .about-info-box p {
+      color: #b2aca2 !important;
+    }
+
+    /* Bottom nav bar for mobile */
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .mobile-bottom-nav {
+        display: flex !important;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 60px;
+        background: #fff;
+        border-top: 1px solid #eee;
+        box-shadow: 0 -2px 12px #0001;
+        z-index: 4000;
+        justify-content: space-around;
+        align-items: center;
+        transition: background 0.3s;
+      }
+
+      .mobile-bottom-nav a,
+      .mobile-bottom-nav button {
+        background: none;
+        border: none;
+        outline: none;
+        color: #232323;
+        font-size: 1.3em;
+        flex: 1 1 0;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s, background 0.2s;
+      }
+
+      .mobile-bottom-nav a.active,
+      .mobile-bottom-nav a:active,
+      .mobile-bottom-nav a:focus,
+      .mobile-bottom-nav button.active {
+        color: #ffca28;
+        background: #23232308;
+      }
+
+      .mobile-bottom-nav button {
+        cursor: pointer;
+      }
+
+      .mobile-bottom-nav .nav-label {
+        font-size: 0.75em;
+        margin-top: 2px;
+        font-weight: 400;
+      }
+
+      .mobile-bottom-nav .dark-btn {
+        color: #232323;
+        transition: color 0.2s;
+      }
+
+      .mobile-bottom-nav .dark-btn.active {
+        color: #ffca28;
+      }
+
+      .sidebar,
+      .sidebar .logo,
+      .theme-toggle-btn {
+        display: none !important;
+      }
+
+      .main {
+        padding-bottom: 70px !important;
+        /* space for bottom nav */
+      }
+
+      /* Dark theme for bottom nav */
+      .dark-theme .mobile-bottom-nav {
+        background: #181818 !important;
+        border-top: 1px solid #222;
+      }
+
+      .dark-theme .mobile-bottom-nav a,
+      .dark-theme .mobile-bottom-nav button,
+      .dark-theme .mobile-bottom-nav .nav-label,
+      .dark-theme .mobile-bottom-nav i {
+        color: #f8f5ed !important;
+      }
+
+      .mobile-bottom-nav {
+        background: #ececec !important;
+      }
+
+      .mobile-bottom-nav a,
+      .mobile-bottom-nav button,
+      .mobile-bottom-nav .nav-label,
+      .mobile-bottom-nav i {
+        color: #383838 !important;
+      }
+
+      body {
+        background-color: #f8f5f0 !important;
+      }
+
+      .dark-theme body {
+        background-color: #181818 !important;
+      }
+    }
+
+    /* Center main content for desktop */
+    .main {
+      margin-left: 0;
+      padding: 40px;
+      max-width: 700px;
+      margin-right: auto;
+      margin-left: auto;
+      transition: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0;
+        font-size: 1em;
+      }
+
+      .main {
+        padding: 16px 4vw 32px 4vw;
+      }
+
+      .heading-box,
+      .about-info-box {
+        max-width: 98vw;
+        font-size: 1.2em;
+        padding: 14px 2vw;
+        margin: 18px auto 18px auto;
+      }
+
+      .sidebar {
+        width: 48px;
+        min-width: 48px;
+        max-width: 48px;
+        padding: 18px 0 18px 0;
+        gap: 18px;
+      }
+
+      .sidebar:hover,
+      .sidebar:focus-within {
+        width: 140px;
+        min-width: 140px;
+        max-width: 140px;
+      }
+
+      .sidebar .logo {
+        font-size: 18px;
+        margin-left: 8px;
+      }
+
+      .sidebar nav a {
+        padding: 10px 10px 10px 10px;
+        font-size: 1em;
+        gap: 8px;
+      }
+
+      .sidebar nav a i {
+        font-size: 16px;
+        min-width: 18px;
+      }
+
+      .sidebar nav a span {
+        max-width: 80px;
+        margin-left: 6px;
+        font-size: 0.98em;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      .about-info-box {
+        padding: 10px 4vw 18px 4vw;
+        font-size: 1em;
+      }
+
+      .theme-toggle-btn {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+        font-size: 1em;
+      }
+
+      footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sidebar = document.getElementById("sidebar");
+      const hoverZone = document.getElementById("hoverZone");
+
+      hoverZone.addEventListener("mouseenter", () => {
+        sidebar.classList.add("show");
+      });
+
+      sidebar.addEventListener("mouseenter", () => {
+        sidebar.classList.add("show");
+      });
+
+      sidebar.addEventListener("mouseleave", () => {
+        sidebar.classList.remove("show");
+      });
+    });
+    // Add cursor-following glow effect for sidebar nav a
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".sidebar nav a").forEach(function (link) {
+        link.addEventListener("mousemove", function (e) {
+          const rect = link.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+          link.style.setProperty("--mx", mx + "px");
+          link.style.setProperty("--my", my + "px");
+        });
+        link.addEventListener("mouseleave", function () {
+          link.style.removeProperty("--mx");
+          link.style.removeProperty("--my");
+        });
+      });
+    });
+    // THEME TOGGLE LOGIC
+    document.addEventListener("DOMContentLoaded", function () {
+      const themeToggleBtn = document.getElementById("themeToggleBtn");
+      const themeToggleIcon = document.getElementById("themeToggleIcon");
+      const themeBgFade = document.getElementById("themeBgFade");
+
+      function updateBgFade() {
+        themeBgFade.style.background = getComputedStyle(document.body).backgroundColor;
+      }
+
+      function setTheme(isDark, animate = false) {
+        if (animate) {
+          updateBgFade();
+          document.body.classList.add("theme-fade-anim");
+        }
+        setTimeout(() => {
+          if (isDark) {
+            document.documentElement.classList.add("dark-theme");
+            themeToggleIcon.classList.remove("fa-moon");
+            themeToggleIcon.classList.add("fa-sun");
+            // Update mobile icon/text if present (only for mobile)
+            var mobileDarkIcon = document.getElementById("mobileDarkIcon");
+            var mobileDarkLabel = document.querySelector("#mobileDarkBtn .nav-label");
+            if (mobileDarkIcon) {
+              mobileDarkIcon.classList.remove("fa-moon");
+              mobileDarkIcon.classList.add("fa-sun");
+            }
+            if (mobileDarkLabel) {
+              mobileDarkLabel.textContent = "Light";
+            }
+          } else {
+            document.documentElement.classList.remove("dark-theme");
+            themeToggleIcon.classList.remove("fa-sun");
+            themeToggleIcon.classList.add("fa-moon");
+            // Update mobile icon/text if present (only for mobile)
+            var mobileDarkIcon = document.getElementById("mobileDarkIcon");
+            var mobileDarkLabel = document.querySelector("#mobileDarkBtn .nav-label");
+            if (mobileDarkIcon) {
+              mobileDarkIcon.classList.remove("fa-sun");
+              mobileDarkIcon.classList.add("fa-moon");
+            }
+            if (mobileDarkLabel) {
+              mobileDarkLabel.textContent = "Dark";
+            }
+          }
+          // Only update theme toggle button text for desktop if visible
+          var themeToggleText = document.getElementById("themeToggleText");
+          if (themeToggleText) {
+            // Hide text on desktop (visible only on mobile via CSS)
+            themeToggleText.textContent = "";
+          }
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+          updateBgFade();
+          if (animate) {
+            setTimeout(() => {
+              document.body.classList.remove("theme-fade-anim");
+            }, 450);
+          }
+        }, animate ? 10 : 0);
+      }
+
+      let theme = localStorage.getItem("theme");
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      setTheme(theme === "dark", false);
+      updateBgFade();
+
+      themeToggleBtn.addEventListener("click", function () {
+        const isDark = !document.documentElement.classList.contains("dark-theme");
+        setTheme(isDark, true);
+      });
+
+      window.addEventListener("resize", updateBgFade);
+      window.addEventListener("orientationchange", updateBgFade);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="hover-zone" id="hoverZone"></div>
+
+  <!-- Dark mode button for desktop (hidden on mobile) -->
+  <!-- Updated theme toggle button with text -->
+  <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+    <i class="fas fa-moon" id="themeToggleIcon"></i>
+    <span id="themeToggleText">Dark</span>
+  </button>
+
+  <!-- Bottom nav bar for mobile -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="brands.html">
+      <i class="fas fa-store"></i>
+      <span class="nav-label">Brands</span>
+    </a>
+    <a href="about.html">
+      <i class="fas fa-info-circle"></i>
+      <span class="nav-label">About</span>
+    </a>
+    <a href="contact.html">
+      <i class="fas fa-envelope"></i>
+      <span class="nav-label">Contact</span>
+    </a>
+    <button class="dark-btn" id="mobileDarkBtn" type="button" aria-label="Toggle dark mode">
+      <i class="fas fa-moon" id="mobileDarkIcon"></i>
+      <span class="nav-label">Dark</span>
+    </button>
+  </nav>
+
+  <!-- Remove sidebar and logo for mobile, keep for desktop -->
+  <!-- Sidebar and logo removed for mobile, unchanged for desktop -->
+  <div class="sidebar" id="sidebar" tabindex="0">
+    <div class="logo">BrandLogo</div>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="brands.html"><i class="fas fa-store"></i><span>Our Brands</span></a>
+      <a href="about.html"><i class="fas fa-info-circle"></i><span>About Us</span></a>
+      <a href="contact.html"><i class="fas fa-envelope"></i><span>Contact Us</span></a>
+    </nav>
+  </div>
+  <div class="page-darken-overlay"></div>
+
+  <!-- Fade overlay for theme transition -->
+  <div id="themeFadeOverlay" class="theme-fade-overlay"></div>
+
+  <!-- Animated background layer -->
+  <div id="themeBgFade" class="theme-bg-fade"></div>
+
+  <div class="main">
+    <div class="heading-box">Cloud Kitchen Brand</div>
+    <div class="about-info-box">
+      <h2 align="center" style="margin-top: 0">About Us</h2>
+      <p>
+        At our brand, we bring diverse food brands together under one
+        digital platform. From traditional Indian delicacies to plant-based
+        health bowls, we strive to deliver high-quality meals made with love
+        and passion. Our mission is to revolutionize the kitchen by combining
+        convenience, variety, and taste—all delivered to your doorstep.
+      </p>
+    </div>
+    <div class="about-info-box">
+      <div class="hours-box">
+        <h2 align="center" style="margin-top: 0">Hours</h2>
+        <p>
+          <b>Mon</b> 09:00 am – 05:00 pm </br>
+          <b>Tue</b> 09:00 am – 05:00 pm </br>
+          <b>Wed</b> 09:00 am – 05:00 pm </br>
+          <b>Thu</b> 09:00 am – 05:00 pm </br>
+          <b>Fri</b> 09:00 am – 05:00 pm </br>
+          <b>Sat</b> Closed </br>
+          <b>Sun</b> Closed </br>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // ...existing code...
+    // Remove mobile-specific dark toggle logic and proxy mobile button to desktop toggle
+    document.addEventListener("DOMContentLoaded", function () {
+      var mobileDarkBtn = document.getElementById("mobileDarkBtn");
+      var themeToggleBtn = document.getElementById("themeToggleBtn");
+      if (mobileDarkBtn && themeToggleBtn) {
+        mobileDarkBtn.addEventListener("click", function () {
+          themeToggleBtn.click();
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

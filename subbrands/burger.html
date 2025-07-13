@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Brand - American Burgers with a Big Attitude 🍔</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Add this line for Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #f7931e;
+            --dark-bg: #1a1a1a;
+            --dark-accent: #2c1810;
+            --text-light: #fff;
+            --text-dark: #2c1810;
+            --danger-color: #d32f2f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Lilita One', cursive;
+            letter-spacing: 1px;
+        }
+
+        /* Reveal on Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transform: rotate(-2deg);
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo a:hover {
+            transform: rotate(-3deg) scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-light);
+            margin: 6px 0;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav .nav-links {
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .mobile-nav .nav-links a {
+            font-size: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .mobile-nav.active .nav-links a {
+            animation: navLinkFade 0.5s ease forwards;
+        }
+
+        .mobile-nav.active .nav-links li:nth-child(1) a {
+            animation-delay: 0.2s;
+        }
+
+        .mobile-nav.active .nav-links li:nth-child(2) a {
+            animation-delay: 0.3s;
+        }
+
+        .mobile-nav.active .nav-links li:nth-child(3) a {
+            animation-delay: 0.4s;
+        }
+
+        .mobile-nav.active .nav-links li:nth-child(4) a {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-7px, 7px);
+        }
+
+        .toggle .line2 {
+            opacity: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-7px, -7px);
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), #ffb347, var(--primary-color));
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-text .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            font-weight: 600;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--danger-color), #f44336);
+            color: white;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-family: 'Lilita One', cursive;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(211, 47, 47, 0.6);
+        }
+
+        .hero-visual {
+            position: relative;
+            text-align: center;
+        }
+
+        .burger-icon {
+            font-size: 18rem;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(3deg);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: var(--dark-accent);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ff6b35" fill-opacity="0.04"><path d="M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z"/></g></g></svg>');
+            z-index: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 80px;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transform: scale(0);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Menu Preview */
+        .menu-preview {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--dark-bg), var(--dark-accent));
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            overflow: hidden;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-img {
+            width: 100%;
+            aspect-ratio: 1 / 0.8;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
+        }
+
+        .menu-item:hover .menu-img {
+            transform: scale(1.1);
+        }
+
+        .menu-item h4 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .menu-item p {
+            font-size: 1rem;
+            color: #eee;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 80px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--glass);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            border-color: var(--primary);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 2;
+        }
+
+        .order-button {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-family: 'Lilita One', cursive;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .order-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .copyright {
+            color: #666;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-visual {
+                padding-top: 40px;
+            }
+
+            .burger-icon {
+                font-size: 12rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo a {
+                font-size: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+                line-height: 1.2;
+            }
+
+            .hero-text .tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-button,
+            .order-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .menu-item h4 {
+                font-size: 1.5rem;
+            }
+
+            .feature-card p,
+            .menu-item p {
+                font-size: 0.95rem;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo"><a href="#home">BURGER BRAND</a></div>
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#menu">MENU</a></li>
+                <li><a href="#order">ORDER</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#menu">MENU</a></li>
+            <li><a href="#order">ORDER</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>AMERICAN BURGERS<br>WITH A<br><span style="color: #d32f2f;">BIG ATTITUDE</span></h1>
+                    <div class="tagline">EAT HAPPY, EAT MESSY</div>
+                    <div class="subtitle">BURGER YOUR WAY!</div>
+                    <p>
+                        It's your turn to taste the real deal. Authentic, juicy, mouth-watering layered messy burgers
+                        with bold American flavors and an Indian twist!
+                    </p>
+                    <a href="#about" class="cta-button">EXPLORE NOW!</a>
+                </div>
+                <div class="hero-visual">
+                    <div class="burger-icon">🍔</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2 class="section-title reveal">THE BURGER EXPERIENCE</h2>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <span class="feature-icon">🥩</span>
+                    <h3>Succulent Healthy Patties</h3>
+                    <p>Layer upon layer of juicy, perfectly seasoned patties that burst with bold American flavors and
+                        Indian spice magic.</p>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 100ms;">
+                    <span class="feature-icon">🍟</span>
+                    <h3>Crispy Fries & Golden Rings</h3>
+                    <p>Perfectly crispy fries and golden onion rings that add the perfect crunch to your messy,
+                        delicious meal.</p>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 200ms;">
+                    <span class="feature-icon">🧊</span>
+                    <h3>Amazing Beverages</h3>
+                    <p>Zero Sugar Coke, Banana Berry Shakes, Kiwi Mint Smoothies, and Cold Coffee to complete your
+                        perfect meal.</p>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 0ms;">
+                    <span class="feature-icon">🌅</span>
+                    <h3>Morning to Evening</h3>
+                    <p>From healthy breakfast burgers to post-work comfort food - we've got your cravings covered all
+                        day long!</p>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 100ms;">
+                    <span class="feature-icon">🎉</span>
+                    <h3>Perfect for Parties</h3>
+                    <p>Whether it's a house party or get-together with friends, our messy burgers are the perfect
+                        crowd-pleasers!</p>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 200ms;">
+                    <span class="feature-icon">🌶️</span>
+                    <h3>American-Indian Fusion</h3>
+                    <p>Classic American burger techniques meet bold Indian flavors for a taste explosion you won't find
+                        anywhere else!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Preview -->
+    <section class="menu-preview" id="menu">
+        <div class="container">
+            <h2 class="section-title reveal">OUR SIGNATURE CREATIONS</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="asset/tmc.png" alt="The Morning Crusher" class="menu-img" />
+                    <h4>🌅 THE MORNING CRUSHER</h4>
+                    <p>Healthy breakfast burger with wholesome toppings to kick-start your day with messy deliciousness.
+                    </p>
+                </div>
+                <div class="menu-item">
+                    <img src="asset/tba.png" alt="The Big Attitude" class="menu-img" />
+                    <h4>🔥 THE BIG ATTITUDE</h4>
+                    <p>Our signature layered burger with succulent patties, crispy elements, and bold American-Indian
+                        fusion flavors.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="asset/tpwd.png" alt="The Post-Work Destroyer" class="menu-img" />
+                    <h4>🌙 THE POST-WORK DESTROYER</h4>
+                    <p>Perfect for crushing your exhaustion with layers of comfort and satisfaction in every messy bite.
+                    </p>
+                </div>
+                <div class="menu-item">
+                    <img src="asset/tpp.png" alt="The Party Pleaser" class="menu-img" />
+                    <h4>🎊 THE PARTY PLEASER</h4>
+                    <p>Designed for sharing (or not!) - loaded with everything that makes a gathering unforgettable.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="asset/tnm.png" alt="The Nacho Master" class="menu-img" />
+                    <h4>🧀 THE NACHO MASTER</h4>
+                    <p>Crispy nacho base with double cheese melt, crunchy layers, and spicy salsa to dominate your
+                        cravings.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="asset/tfw.png" alt="The Fire Wrecker" class="menu-img" />
+                    <h4>🌶️ THE FIRE WRECKER</h4>
+                    <p>Warning: Extremely spicy! For heat-lovers only. Jalapeños, peri-peri mayo, and bold smoky flair.
+                    </p>
+                </div>
+
+                <div class="menu-item">
+                    <img src="asset/tdm.png" alt="The Desi Monster" class="menu-img" />
+                    <h4>🇮🇳 THE DESI MONSTER</h4>
+                    <p>A monstrous tower of aloo tikki, chutneys, and spicy masala twist — unapologetically Indian!</p>
+                </div>
+
+                <div class="menu-item">
+                    <img src="asset/tcm.png" alt="The Crunch Munch" class="menu-img" />
+                    <h4>🍗 THE CRUNCH MUNCH</h4>
+                    <p>Layers of crispy fried chicken, crunchy onions, and zingy sauces — every bite is a crackling
+                        explosion of flavor.</p>
+                </div>
+
+                <div class="menu-item">
+                    <img src="asset/tcb.png" alt="The Choco Beast" class="menu-img" />
+                    <h4>🍫 THE CHOCO BEAST</h4>
+                    <p>Dessert meets burger — chocolate-glazed buns, brownie patty, and a drizzle of caramel for sweet
+                        chaos.</p>
+                </div>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="order">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section reveal">
+                    <h3>READY TO GET MESSY?</h3>
+                    <p>Don't just eat a burger - experience one! Order now and let the American-Indian twist take over
+                        your taste buds.</p>
+                    <a href="#" class="order-button">🍔 ORDER NOW!</a>
+                </div>
+                <div class="footer-section reveal" style="transition-delay: 100ms;">
+                    <h3>OUR BURGER'S SWEAR</h3>
+                    <p>Authentic, juicy, mouth-watering burgers that aren't just stacks of veggies. We serve the REAL
+                        DEAL with big attitude and bigger flavors!</p>
+                </div>
+                <div class="footer-section reveal" style="transition-delay: 200ms;">
+                    <h3>FIND US ON</h3>
+                    <p>Follow us on social media for the latest deals, new creations, and messy burger content!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">
+                &copy; 2025 Burger Brand - American Burgers with a Big Attitude. All Rights Reserved. 🍔
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- Mobile Menu Toggle ---
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const body = document.querySelector('body');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav .nav-links a');
+
+            const toggleNav = () => {
+                hamburger.classList.toggle('toggle');
+                mobileNav.classList.toggle('active');
+                body.classList.toggle('no-scroll');
+            };
+
+            hamburger.addEventListener('click', toggleNav);
+            // Close menu when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileNav.classList.contains('active')) {
+                        toggleNav();
+                    }
+                });
+            });
+
+            // --- Scroll Header Style Change ---
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(10, 10, 10, 0.9)';
+                } else {
+                    header.style.background = 'rgba(10, 10, 10, 0.8)';
+                }
+            });
+
+            // --- Intersection Observer for Scroll Animations ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- CTA Button Ripple Effect ---
+            document.querySelectorAll('.cta-button, .order-button').forEach(button => {
+                button.addEventListener('mousedown', function (e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+
+                    // Check for existing ripple and remove it
+                    const existingRipple = this.querySelector('.ripple');
+                    if (existingRipple) {
+                        existingRipple.remove();
+                    }
+
+                    this.appendChild(ripple);
+                });
+            });
+        });
+
+        // Add CSS for ripple effect dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>

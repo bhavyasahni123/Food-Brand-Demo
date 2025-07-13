@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biryani Brand</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --royal-blue: #1a365d;
+            --deep-blue: #0f2537;
+            --gold: #d4af37;
+            --light-gold: #f4e99b;
+            --cream: #faf7f0;
+            --white: #ffffff;
+            --dark-gray: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'TheQueen';
+            src: url('asset/fonts/TheQueen.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .logo {
+            margin-top: 0.6rem;
+            align-items: center;
+            height: 100%;
+            /* match nav height */
+        }
+
+        .logo img {
+            height: 60px;
+            /* or adjust to fit your nav */
+            width: auto;
+            /* optional – for softer look */
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 50px;
+            }
+        }
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+        .hero-logo {
+            align-items: center;
+            position: absolute;
+            top: -70px;
+            left: 26%;
+            transform: translateX(-50%);
+            z-index: 1001;
+            animation: pulse-glow-image 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow-image {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 1px #b88f0889) drop-shadow(0 0 6px #b88f0890);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 5px #ffffff91) drop-shadow(0 0 12px #e7bf3c8b);
+            }
+        }
+
+
+        .hero-logo img {
+            height: 350px;
+            width: auto;
+            margin-bottom: 2rem;
+            animation: pulse-glow-image 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 480px) {
+            .hero-logo img {
+                height: 70px;
+            }
+        }
+
+
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            /* semi-transparent deep-blue */
+            /* for Safari support */
+            color: var(--white);
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            padding-right: 2rem;
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links {
+                padding-top: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                margin: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+
+
+        .nav-links a {
+            color: var(--light-gold);
+            margin-left: 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 95vh; /* reduced height */
+    padding-bottom: 10rem;
+    padding: 4rem;
+    position: relative;
+    background: linear-gradient(0deg, var(--royal-blue), var(--deep-blue));
+    color: var(--light-gold);
+    overflow: hidden;
+}
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                padding: 4rem 1rem;
+                text-align: center;
+            }
+
+            .hero-text {
+                padding-top: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-img img {
+                max-width: 80%;
+                margin-top: 1rem;
+            }
+        }
+
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image:
+                radial-gradient(#fff8d6 1px, transparent 1px),
+                radial-gradient(#ffe594 1px, transparent 1px),
+                radial-gradient(#fff 1px, transparent 1px);
+            background-size: 60px 60px, 90px 90px, 120px 120px;
+            background-position: 0 0, 30px 30px, 60px 60px;
+            animation: star-scroll 100s infinite linear alternate;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes star-drift {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100px, 200px);
+                /* diagonal drift */
+            }
+        }
+
+        @keyframes star-scroll {
+            0% {
+                background-position: 0 0, 0 0, 0 0;
+            }
+
+            100% {
+                background-position: 1000px 600px, 1200px 800px, 1500px 1000px;
+            }
+        }
+
+        .floating-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* behind hero text but above background */
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            color: #fff9d6;
+            font-size: 1.2rem;
+            animation: drift-star 20s linear infinite, twinkle 4s ease-in-out infinite;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 6px #ffe074);
+        }
+
+        @keyframes drift-star {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(200px, 400px);
+                /* direction of sky movement */
+            }
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+
+
+        .hero-text {
+            padding-top: 4rem;
+            text-align: center;
+            width: 40rem;
+        }
+
+
+
+        .hero-text h1 {
+            font-family: 'TheQueen', cursive;
+            font-size: 4rem;
+            line-height: 1.2;
+            color: #e7bf3c;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #b88f08, 0 0 20px #b88f08;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Glowing pulse */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #b88f08, 0 0 20px #b88f08;
+            }
+
+            50% {
+                text-shadow: 0 0 18px #ffffff91, 0 0 36px #e7bf3c;
+            }
+        }
+
+        .sky-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Moon */
+        .moon {
+            position: absolute;
+            top: 10%;
+            right: 8%;
+            font-size: 4rem;
+            color: #fdf6e3;
+            filter: drop-shadow(0 0 12px #fff8dc);
+            animation: moon-float 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes moon-float {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Stars */
+        .star {
+            position: absolute;
+            color: #fff9d6;
+            font-size: 0.8rem;
+            animation: drift-star 100s linear infinite, twinkle 3s ease-in-out infinite;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 6px #ffe074);
+        }
+
+        @keyframes drift-star {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(200px, 400px);
+            }
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero-text .btn {
+            width: 12rem;
+            height: 4rem;
+            background: linear-gradient(45deg, var(--gold), var(--light-gold));
+            color: var(--deep-blue);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: large;
+            font-weight: 800;
+            border-radius: 35px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .hero-text .btn:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+        }
+
+.hero-img {
+    flex: 1;
+    text-align: center;
+}
+
+
+        .hero-img img {
+            max-width: 600px;
+        }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                padding: 4rem 2rem;
+            }
+
+            .left-content {
+                width: 100%;
+            }
+
+            .hero-logo img {
+                height: 120px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-img {
+                width: 100%;
+                margin-top: 2rem;
+            }
+        }
+
+
+
+        .qualities {
+            padding: 6rem 2rem;
+            background: var(--cream);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+
+        .quality-box {
+            position: relative;
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .quality-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quality-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .quality-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, #d4af37, #f4e99b, #d4af37);
+            background-size: 300% 300%;
+            animation: borderAnimation 8s ease infinite;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+        }
+
+        @keyframes borderAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .quality-box:hover {
+            transform: translateY(-8px);
+        }
+
+        .quality-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--royal-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .quality-box p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .menu-cta {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .menu-cta button {
+            background: linear-gradient(45deg, var(--gold), var(--light-gold));
+            color: var(--deep-blue);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .menu-cta button:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .explore-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .explore-section {
+                flex-direction: column;
+                padding: 2rem 1rem;
+            }
+
+            .explore-img,
+            .explore-text {
+                padding: 0;
+                text-align: center;
+            }
+
+            .explore-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .explore-text p {
+                width: 100%;
+                padding: 0 1rem;
+            }
+        }
+
+
+        .explore-img {
+            flex: 1;
+            text-align: center;
+            min-width: 280px;
+            padding-left: 3rem;
+        }
+
+        .explore-img img {
+            max-width: 100%;
+            border-radius: 1rem;
+            border: 4px solid var(--gold);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .explore-text {
+            flex: 1;
+            min-width: 280px;
+            padding-left: 5rem;
+        }
+
+        .explore-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--royal-blue);
+            margin-bottom: 2rem;
+        }
+
+        .explore-text p {
+            width: 500px;
+            height: 100px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        footer {
+            background: var(--deep-blue);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="asset/logo/biryani-text.jpg" loading="lazy">
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+
+
+    <section class="hero" id="home">
+
+        <div class="floating-stars">
+            <span class="star" style="top: 10%; left: 20%;">✦</span>
+            <span class="star" style="top: 25%; left: 70%;">✧</span>
+            <span class="star" style="top: 40%; left: 15%;">✦</span>
+            <span class="star" style="top: 60%; left: 60%;">✧</span>
+            <span class="star" style="top: 80%; left: 30%;">✦</span>
+        </div>
+
+        <div class="sky-layer">
+            <div class="moon">🌙</div>
+        </div>
+
+        <div class="hero-content">
+            <div class="left-content">
+                <div class="hero-logo">
+                    <img src="asset/logo/shah-jahani-logo.png" loading="lazy" alt="Logo">
+                </div>
+                <div class="hero-text">
+                    <h1>Savor the Majestic Flavors of India</h1>
+                    <p>Experience our regal biryanis, crafted with rich spices and authentic recipes.</p>
+                    <button class="btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="hero-img">
+                <img src="asset/biryani1.png" alt="Delicious Biryani" loading="lazy">
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <section class="qualities">
+        <div class="quality-box">
+            <div class="quality-icon">👑</div>
+            <h3>Royal Heirloom Recipes</h3>
+            <p>Our dishes are prepared in accordance with time-honored royal traditions, preserving the majestic flavors once savored in imperial courts.</p>
+        </div>
+
+        <div class="quality-box">
+            <div class="quality-icon">🚚</div>
+            <h3>Imperial Swift Delivery</h3>
+            <p>From our royal kitchen to your palace gates — your biryani arrives hot, fragrant, and worthy of a sovereign’s feast.</p>
+        </div>
+
+        <div class="quality-box">
+            <div class="quality-icon">🥘</div>
+            <h3>Premium Ingredients Only</h3>
+            <p>Only the most exquisite, hand-selected ingredients — befitting kings and queens — are used to craft our biryani of unmatched grandeur.</p>
+        </div>
+
+        <div class="quality-box">
+            <div class="quality-icon">❤️</div>
+            <h3>Made with Passion & Precision</h3>
+            <p>Every dish is a masterpiece, lovingly prepared with the care, precision, and reverence reserved for royal dining.</p>
+        </div>
+    </section>
+
+
+    <div class="menu-cta">
+        <button>View Menu</button>
+    </div>
+
+    <section class="explore-section">
+        <div class="explore-img">
+            <img src="asset/biryani-closeup.jpg" alt="Signature Dish" loading="lazy">
+        </div>
+        <div class="explore-text">
+            <h2>About Our Signature Creations</h2>
+            <p>We embrace a harmonious color palette and recurring design motifs to uphold our brand identity, ensuring a consistent and dignified experience for our esteemed royal guests.</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 {copyright name}. All rights reserved.
+    </footer>
+
+    <script>
+        const skyLayer = document.querySelector('.sky-layer');
+        const starChars = ['✦', '✧', '★', '✺'];
+
+        for (let i = 0; i < 30; i++) {
+            const star = document.createElement('span');
+            star.classList.add('star');
+            star.textContent = starChars[Math.floor(Math.random() * starChars.length)];
+
+            // Random position and size
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.fontSize = (Math.random() * 1.2 + 0.5) + 'rem';
+            star.style.animationDelay = Math.random() * 4 + 's';
+
+            skyLayer.appendChild(star);
+        }
+
+        const biryaniImages = [
+            "asset/biryani1.png",
+            "asset/biryani2.png",
+            "asset/biryani3.png"
+        ];
+
+        let currentImageIndex = 0;
+        const heroImg = document.querySelector('.hero-img img');
+
+        function changeImage() {
+            currentImageIndex = (currentImageIndex + 1) % biryaniImages.length;
+            heroImg.src = biryaniImages[currentImageIndex];
+        }
+
+        // Change image every 3 seconds
+        setInterval(changeImage, 3000);
+    </script>
+
+    <script>
+        const boxes = document.querySelectorAll('.quality-box');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        boxes.forEach(box => observer.observe(box));
+    </script>
+
+
+</body>
+
+</html>

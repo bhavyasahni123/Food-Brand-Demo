@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Indian Food Brand - Modern North Indian Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #1a1a1a;
+            --accent: #FFD60A;
+            --accent-dark: #FFC107;
+            --text-light: #f8f9fa;
+            --text-dark: #2d3436;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-strong: rgba(255, 255, 255, 0.15);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--secondary) 0%, #2c1810 100%);
+            --border-radius: 20px;
+            --border-radius-small: 12px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav.scrolled {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 0.8rem 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(44, 24, 16, 0.9) 100%),
+                url('asset/thumbnail.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.08;
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 0.08;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+                opacity: 0.12;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 2rem;
+            animation: hero-entrance 1.2s ease-out;
+        }
+
+        @keyframes hero-entrance {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .hero .accent-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            animation: text-shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes text-shimmer {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: rgba(248, 249, 250, 0.8);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fade-in-up 1s ease-out 0.3s both;
+        }
+
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-in-up 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--border-radius-small);
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: none;
+            letter-spacing: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: 0 8px 25px rgba(255, 214, 10, 0.2);
+        }
+
+        .cta-secondary:hover {
+            background: var(--accent);
+            color: var(--secondary);
+            box-shadow: 0 15px 35px rgba(255, 214, 10, 0.3);
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #636e72;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .dish-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .dish-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .dish-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .dish-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+            transform: translate(50%, -50%);
+        }
+
+        .dish-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .dish-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dish-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .dish-card:hover .dish-icon::before {
+            left: 100%;
+        }
+
+        .dish-card:hover .dish-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .dish-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #553312;
+            transition: var(--transition);
+        }
+
+        .dish-card:hover h3 {
+            color: var(--primary);
+        }
+
+        .dish-card p {
+            color: #636e72;
+            line-height: 1.7;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .dish-price {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: var(--transition);
+        }
+
+        .dish-card:hover .dish-price {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--secondary);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23FF6B35" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23FFD60A" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23FF6B35" opacity="0.15"/><circle cx="10" cy="60" r="0.5" fill="%23FFD60A" opacity="0.15"/><circle cx="90" cy="40" r="0.5" fill="%23FF6B35" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .experience .section-title {
+            color: var(--text-light);
+        }
+
+        .experience .section-subtitle {
+            color: rgba(248, 249, 250, 0.8);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .experience-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            background: var(--glass-strong);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .experience-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-primary);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 2rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-card:hover .experience-icon {
+            transform: rotateY(180deg);
+        }
+
+        .experience-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-card p {
+            color: rgba(248, 249, 250, 0.8);
+            font-weight: 400;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+            counter-reset: number;
+            animation: count-up 2s ease-out;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Order Section */
+        .order-section {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--text-dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate-bg 20s linear infinite;
+        }
+
+        @keyframes rotate-bg {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .order-section .section-title {
+            color: #2d3436;
+            position: relative;
+            z-index: 2;
+        }
+
+        .order-section .section-subtitle {
+            color: rgba(45, 52, 54, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .order-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .order-btn {
+            background: var(--secondary);
+            color: #e2a200;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: var(--border-radius-small);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 26, 26, 0.3);
+        }
+
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .order-btn:hover::before {
+            left: 0;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 26, 26, 0.4);
+            color: #2d3436;
+        }
+
+        .order-btn i {
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .order-btn:hover i {
+            transform: scale(1.2);
+            color: #2d3436;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: rgba(26, 26, 26, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(26, 26, 26, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(26, 26, 26, 0.1);
+            border-radius: var(--border-radius-small);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background: rgba(26, 26, 26, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--glass);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            border-color: var(--primary);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 25s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.1;
+            }
+
+            25% {
+                transform: translateY(-40px) rotate(90deg) scale(1.2);
+                opacity: 0.2;
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg) scale(0.8);
+                opacity: 0.15;
+            }
+
+            75% {
+                transform: translateY(-60px) rotate(270deg) scale(1.1);
+                opacity: 0.25;
+            }
+        }
+
+        .floating-1 {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            top: 70%;
+            right: 12%;
+            animation-delay: 8s;
+        }
+
+        .floating-3 {
+            top: 45%;
+            left: 85%;
+            animation-delay: 16s;
+        }
+
+        .floating-4 {
+            top: 25%;
+            right: 25%;
+            animation-delay: 4s;
+        }
+
+        .floating-5 {
+            top: 80%;
+            left: 30%;
+            animation-delay: 12s;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            transform: translateZ(0);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Interactive Hover Effects */
+        .interactive-card {
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .interactive-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5),
+                0 0 20px rgba(255, 107, 53, 0.3),
+                0 0 30px rgba(255, 107, 53, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+
+            .experience-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section-title {
+                font-size: clamp(2rem, 4vw, 3rem);
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .order-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .dish-card,
+            .experience-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .floating-element {
+                display: none;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-dark: #f8f9fa;
+                --text-light: #e9d89c;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+
+            .dish-card,
+            .experience-card {
+                border: 2px solid var(--primary);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .nav,
+            .floating-element,
+            .particles {
+                display: none;
+            }
+
+            .hero {
+                height: auto;
+                padding: 2rem;
+            }
+
+            * {
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Brand Logo</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#stats">About</a></li>
+                <li><a href="#order">Order</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Elements -->
+    <div class="floating-element floating-1">🌶️</div>
+    <div class="floating-element floating-2">⭐</div>
+    <div class="floating-element floating-3">🌿</div>
+    <div class="floating-element floating-4">🔥</div>
+    <div class="floating-element floating-5">✨</div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>
+                <span class="accent-text glow-text">Food</span> Brand
+            </h1>
+            <p class="subtitle">
+                Where ancient traditions dance with modern innovation, creating a symphony of flavors that awakens your
+                soul
+            </p>
+            <div class="hero-buttons">
+                <button class="cta-button" onclick="scrollToSection('order')">
+                    <i class="fas fa-utensils"></i>
+                    Order Now
+                </button>
+                <button class="cta-button cta-secondary" onclick="scrollToSection('menu')">
+                    <i class="fas fa-book-open"></i>
+                    Explore Menu
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Culinary Masterpieces</h2>
+                <p class="section-subtitle">
+                    Each dish tells a story of heritage, passion, and culinary artistry, crafted to perfection with the
+                    finest ingredients and time-honored techniques
+                </p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="dish-card fade-in interactive-card">
+                    <div class="dish-price">₹450</div>
+                    <div class="dish-icon">🍛</div>
+                    <h3>Royal Kashmiri Rogan Josh</h3>
+                    <p>Succulent lamb pieces slow-cooked in a rich, aromatic gravy infused with traditional Kashmiri
+                        spices, saffron, and yogurt. A royal delicacy that brings the majestic flavors of Kashmir to
+                        your plate.</p>
+                </div>
+
+                <div class="dish-card fade-in interactive-card">
+                    <div class="dish-price">₹320</div>
+                    <div class="dish-icon">🍚</div>
+                    <h3>Heritage Rajma Chawal</h3>
+                    <p>Premium kidney beans simmered in a luscious tomato-onion gravy, served with fragrant basmati
+                        rice. This comfort food classic is elevated with our secret blend of spices and cooking
+                        techniques.</p>
+                </div>
+
+                <div class="dish-card fade-in interactive-card">
+                    <div class="dish-price">₹380</div>
+                    <div class="dish-icon">🐔</div>
+                    <h3>Signature Butter Chicken</h3>
+                    <p>Tender chicken pieces marinated in yogurt and spices, cooked in a velvety tomato-cream sauce. Our
+                        signature version includes a hint of fenugreek and a touch of smokiness from the tandoor.</p>
+                </div>
+
+                <div class="dish-card fade-in interactive-card">
+                    <div class="dish-price">₹350</div>
+                    <div class="dish-icon">🧀</div>
+                    <h3>Artisan Paneer Tikka Masala</h3>
+                    <p>House-made paneer cubes grilled to perfection and simmered in a rich, creamy tomato-based sauce.
+                        Enhanced with bell peppers, onions, and a medley of aromatic spices.</p>
+                </div>
+
+                <div class="dish-card fade-in interactive-card">
+                    <div class="dish-price">₹280</div>
+                    <div class="dish-icon">🫘</div>
+                    <h3>Amritsari Pinde Chole</h3>
+                    <p>Authentic Punjabi chickpeas cooked with traditional spices and served with fluffy bhature or
+                        kulcha. This street food favorite is prepared using age-old recipes from the heart of Punjab.
+                    </p>
+                </div>
+
+                <div class="dish-card fade-in interactive-card">
+                    <div class="dish-price">₹180</div>
+                    <div class="dish-icon">🍞</div>
+                    <h3>Tandoor Fresh Breads</h3>
+                    <p>Hand-rolled naans, rotis, and parathas baked fresh in our traditional clay tandoor. Choose from
+                        plain, garlic, butter, or stuffed varieties, each with its own unique character and flavor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number" data-count="10000">0</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number" data-count="50">0</span>
+                    <span class="stat-label">Signature Dishes</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number" data-count="5">0</span>
+                    <span class="stat-label">Years of Excellence</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number" data-count="25">0</span>
+                    <span class="stat-label">Master Chefs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The Spice Symphony Experience</h2>
+                <p class="section-subtitle">
+                    Immerse yourself in a culinary journey where every element is carefully orchestrated to create an
+                    unforgettable dining experience
+                </p>
+            </div>
+
+            <div class="experience-grid">
+                <div class="experience-card fade-in scale-in">
+                    <div class="experience-icon">🌿</div>
+                    <h3>Premium Ingredients</h3>
+                    <p>We source the finest spices, herbs, and ingredients from across India, ensuring authenticity and
+                        exceptional quality in every dish we create.</p>
+                </div>
+
+                <div class="experience-card fade-in scale-in">
+                    <div class="experience-icon">⚡</div>
+                    <h3>Bold Flavor Profiles</h3>
+                    <p>Our master chefs expertly balance heat, sweetness, and aromatics to create complex flavor
+                        profiles that dance on your palate with every bite.</p>
+                </div>
+
+                <div class="experience-card fade-in scale-in">
+                    <div class="experience-icon">🏠</div>
+                    <h3>Comfort Redefined</h3>
+                    <p>Traditional home-style cooking elevated through modern techniques and presentation, bringing you
+                        the warmth of Indian hospitality.</p>
+                </div>
+
+                <div class="experience-card fade-in scale-in">
+                    <div class="experience-icon">👨‍🍳</div>
+                    <h3>Culinary Artistry</h3>
+                    <p>Our team of experienced chefs combines generations of culinary wisdom with innovative cooking
+                        methods to create extraordinary dishes.</p>
+                </div>
+
+                <div class="experience-card fade-in scale-in">
+                    <div class="experience-icon">🔥</div>
+                    <h3>Tandoor Mastery</h3>
+                    <p>Our traditional clay tandoor reaches temperatures of 900°F, imparting a unique smoky flavor and
+                        perfect char to our breads and grilled items.</p>
+                </div>
+
+                <div class="experience-card fade-in scale-in">
+                    <div class="experience-icon">💎</div>
+                    <h3>Authentic Heritage</h3>
+                    <p>Every recipe is rooted in authentic Indian culinary traditions, passed down through generations
+                        and perfected over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="section order-section" id="order">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Begin Your Culinary Journey</h2>
+                <p class="section-subtitle">
+                    Experience the magic of authentic North Indian cuisine, delivered fresh to your doorstep or ready
+                    for pickup
+                </p>
+            </div>
+
+            <div class="order-buttons fade-in">
+                <button class="order-btn" onclick="orderDelivery()">
+                    <i class="fas fa-motorcycle"></i>
+                    <span>Order Delivery</span>
+                </button>
+                <button class="order-btn" onclick="orderPickup()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Order Pickup</span>
+                </button>
+                <button class="order-btn" onclick="makeReservation()">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Make Reservation</span>
+                </button>
+            </div>
+
+            <div class="contact-info fade-in">
+                <h3
+                    style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 2rem;">
+                    Get in Touch
+                </h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Call Us</strong><br>
+                            +91 98188 74886
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Hours</strong><br>
+                            11:00 AM - 11:00 PM
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <strong>Free Delivery</strong><br>
+                            Orders above ₹500
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location</strong><br>
+                            Delhi, India
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-logo">Brand Logo</h3>
+            <p class="footer-description">
+                Where culinary traditions meet modern innovation. We're passionate about bringing you the authentic
+                flavors of North India, crafted with love and served with pride. Join us on this incredible culinary
+                journey.
+            </p>
+
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 {Trademark Name}. All rights reserved. | Crafted with ❤️ for food lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const navHeight = document.querySelector('.nav').offsetHeight;
+            const elementPosition = element.offsetTop - navHeight;
+
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+        }, observerOptions);
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            });
+        }
+
+        // Stats section observer
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        // Order functions
+        function orderDelivery() {
+            alert('🚚 Redirecting to delivery platform...\n\nYou can order through:\n• Zomato\n• Swiggy\n• Direct call: +91-9876-543210');
+        }
+
+        function orderPickup() {
+            alert('🥡 Pickup Order\n\nCall us at +91-9876-543210 to place your pickup order.\n\nReady in 20-30 minutes!');
+        }
+
+        function makeReservation() {
+            alert('📅 Table Reservation\n\nCall us at +91-9876-543210 to reserve your table.\n\nWe look forward to serving you!');
+        }
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Observe stats section
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+
+            // Create particles
+            createParticles();
+
+            // Add loading animation to hero
+            setTimeout(() => {
+                document.querySelector('.hero-content').style.opacity = '1';
+            }, 100);
+
+            // Preload images and optimize performance
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.loading = 'lazy';
+            });
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function updateOnScroll() {
+            // Throttle scroll events
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Scroll-based animations here
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateOnScroll);
+
+        // Error handling
+        window.addEventListener('error', (e) => {
+            console.log('An error occurred:', e.error);
+        });
+
+        // Accessibility improvements
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Service Worker for offline functionality (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

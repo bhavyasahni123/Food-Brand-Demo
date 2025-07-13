@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunch Brands - Your Comfort Food, Right at Work</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e40af;
+      --accent: #60a5fa;
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-blur: blur(12px);
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      --radius: 22px;
+      --transition: 0.35s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+      color: #222;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      background: rgba(30, 64, 175, 0.95);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 1.2rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      transition: background 0.3s;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Bitcount Grid Double';
+      font-size: 2.2rem;
+      font-weight: 1500;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(30, 64, 175, 0.18);
+      user-select: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .logo:hover {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 10px 22px;
+      border-radius: 30px;
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a:focus,
+    .nav-links a:hover {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      box-shadow: 0 2px 12px var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      padding: 140px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/food.png');
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInDown 1.2s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-family: 'Bitcount Grid Double';
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      text-shadow: 2px 2px 12px rgba(30, 64, 175, 0.18);
+      letter-spacing: 1px;
+      animation: slideInDown 1s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .hero-subtitle {
+      font-size: 1.6rem;
+      margin-bottom: 2.2rem;
+      opacity: 0.92;
+      font-weight: 600;
+      animation: slideInUp 1.2s cubic-bezier(.4, 0, .2, 1) 0.2s both;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 20px 48px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(29, 78, 216, 0.18);
+      transition:
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1.2s cubic-bezier(.4, 0, .2, 1) 0.4s both;
+      will-change: transform, box-shadow, background;
+    }
+
+    .cta-button:focus,
+    .cta-button:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(29, 78, 216, 0.22);
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      /* Add transition-delay for a shift effect */
+      transition:
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+        box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+        background 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0s;
+    }
+
+    /* Floating Emojis */
+    .floating-emoji {
+      position: fixed;
+      font-size: 2.5rem;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatAround 18s infinite linear;
+      filter: blur(0.5px);
+      user-select: none;
+    }
+
+    @keyframes floatAround {
+      0% {
+        transform: translateX(-100px) translateY(0px) rotate(0deg);
+      }
+
+      25% {
+        transform: translateX(calc(100vw + 100px)) translateY(-60px) rotate(90deg);
+      }
+
+      50% {
+        transform: translateX(calc(100vw + 100px)) translateY(60px) rotate(180deg);
+      }
+
+      75% {
+        transform: translateX(-100px) translateY(120px) rotate(270deg);
+      }
+
+      100% {
+        transform: translateX(-100px) translateY(0px) rotate(360deg);
+      }
+    }
+
+    /* Features */
+    .features {
+      padding: 90px 0 80px;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.7rem;
+      margin-bottom: 3.2rem;
+      color: var(--secondary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 22px auto 0;
+      border-radius: 2px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .feature-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      padding: 2.5rem 1.5rem;
+      transition: transform var(--transition), box-shadow var(--transition), background 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid #e0e7ff;
+      cursor: pointer;
+      animation: fadeInUp 1s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0.7;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(30, 64, 175, 0.13);
+      background: rgba(255, 255, 255, 0.38);
+    }
+
+    .feature-icon {
+      font-size: 2.7rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      filter: drop-shadow(0 2px 8px #e0e7ff);
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.15) rotate(-8deg);
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Thali Menu */
+    .menu {
+      padding: 90px 0 80px;
+      background: #fff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .thali-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .thali-image {
+      position: relative;
+      overflow: hidden;
+      margin-left: -4rem;
+      margin-top: -5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 350px;
+    }
+
+    .thali-image img {
+      height: 28rem;
+      width: auto;
+      background: #fff;
+      transition: transform 0.3s;
+      animation: thaliFloat 3s infinite ease-in-out alternate;
+    }
+
+    @keyframes thaliFloat {
+      0% {
+        transform: translateY(7px);
+      }
+
+      100% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .thali-details {
+      padding: 2.2rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1.5px solid #e0e7ff;
+      animation: fadeInRight 1.2s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .thali-details h3 {
+      font-size: 2.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .menu-items {
+      list-style: none;
+      margin: 2rem 0;
+      padding: 0;
+    }
+
+    .menu-items li {
+      padding: 10px 0;
+      font-size: 1.1rem;
+      border-bottom: 1.5px solid #e0e7ff;
+      display: flex;
+      align-items: center;
+    }
+
+    .item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .item-row button {
+      background: linear-gradient(90deg, #e0e7ff, #f1f5f9);
+      border: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.2s, transform 0.2s;
+      color: var(--primary);
+      font-weight: 700;
+      box-shadow: 0 2px 8px #e0e7ff;
+      outline: none;
+    }
+
+    .item-row button:focus,
+    .item-row button:hover {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .item-row span {
+      flex: 1;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #222;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 1.5rem 0;
+      text-shadow: 0 2px 8px #e0e7ff;
+    }
+
+    /* New Menu Section */
+    .new-menu {
+      padding: 100px 0 90px;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .menu-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 3.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .category-list {
+      width: 25%;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      padding: 1.2rem;
+      border-radius: 16px;
+      border: 1.5px solid #e0e7ff;
+      box-shadow: var(--shadow);
+      animation: fadeInLeft 1.2s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .category-list ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.2rem;
+    }
+
+    .category-list li {
+      padding: 15px 18px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: #333;
+      font-weight: 600;
+      text-transform: capitalize;
+      background: transparent;
+      border-left: 4px solid transparent;
+      border-radius: 8px;
+      transition: all 0.25s;
+      outline: none;
+    }
+
+    .category-list li.active,
+    .category-list li:focus,
+    .category-list li:hover {
+      background: linear-gradient(90deg, #e0e7ff, #f1f5f9);
+      border-left: 4px solid var(--primary);
+      color: var(--primary);
+      transform: scale(1.04);
+    }
+
+    .category-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+      width: 70%;
+      padding: 1.5rem;
+      border-radius: 16px;
+      background: transparent;
+      animation: fadeIn 1s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      margin-bottom: 1.5rem;
+      padding: 22px 18px;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(30, 64, 175, 0.07);
+      border: 1.5px solid #e0e7ff;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      position: relative;
+      min-height: 160px;
+      overflow: hidden;
+    }
+
+    .category-item:hover {
+      transform: translateY(-6px) scale(1.03);
+      background: rgba(255, 255, 255, 0.38);
+      box-shadow: 0 8px 32px rgba(30, 64, 175, 0.13);
+    }
+
+    .category-item h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .category-item p {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .category-item .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--secondary);
+      align-self: flex-end;
+      margin-top: auto;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(30, 64, 175, 0.18);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(30, 64, 175, 0.18);
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 90vw;
+      position: relative;
+      text-align: center;
+      animation: popIn 0.4s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--primary);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #e11d48;
+    }
+
+    .modal-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 12px #e0e7ff;
+      background: #f1f5f9;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 90px 0 80px;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+      z-index: 2;
+      position: relative;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.2rem;
+      margin-top: 3.2rem;
+    }
+
+    .testimonial {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      padding: 2.2rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1.5px solid #e0e7ff;
+      animation: fadeInUp 1.2s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(30, 64, 175, 0.13);
+    }
+
+    .stars {
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    .testimonial-author {
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 60px 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #444;
+      padding-top: 2rem;
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .thali-showcase {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .menu-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .category-list,
+      .category-items {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .container {
+        padding: 0 10px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .thali-image img {
+        height: 16rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 100px 0 60px;
+      }
+
+      .thali-details {
+        padding: 1.2rem;
+      }
+
+      .modal-content {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating Food Emojis -->
+  <div class="floating-emoji" style="top: 10%; animation-delay: 0s;">🍛</div>
+  <div class="floating-emoji" style="top: 30%; animation-delay: 5s;">🍚</div>
+  <div class="floating-emoji" style="top: 60%; animation-delay: 10s;">🥘</div>
+  <!-- Header -->
+  <header>
+    <nav class="container">
+      <div class="logo" tabindex="0">Lunch Brands</div>
+      <ul class="nav-links">
+        <li><a href="#home" tabindex="0">Home</a></li>
+        <li><a href="#menu" tabindex="0">Menu</a></li>
+        <li><a href="#about" tabindex="0">About</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Your Comfort Food, Right at Work! 🍛</h1>
+        <p class="hero-subtitle">YOU DESERVE A LUNCH BREAK TODAY!</p>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+          Missing home-cooked lunches at work? <strong>We have your back.</strong><br>
+          Get wholesome thalis and more delivered straight to your desk - it's like a <strong>hug from home!🫂</strong>
+        </p>
+        <button class="cta-button" onclick="orderNow()">🍽️ Order Your Lunch Now!</button>
+      </div>
+    </div>
+  </section>
+  <!-- Features Section -->
+  <section class="features" id="about">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us?</h2>
+      <div class="features-grid">
+        <div class="feature-card" tabindex="0">
+          <span class="feature-icon">🏠</span>
+          <h3>Ghar Jaisa Khana</h3>
+          <p>Authentic home-style cooking that reminds you of mom's kitchen. Every bite feels like home comfort.</p>
+        </div>
+        <div class="feature-card" tabindex="0">
+          <span class="feature-icon">🚚</span>
+          <h3>Desk Delivery</h3>
+          <p>No need to step out! We deliver fresh, hot thalis directly to your workplace at exactly 1 PM.</p>
+        </div>
+        <div class="feature-card" tabindex="0">
+          <span class="feature-icon">🌟</span>
+          <h3>Quality & Quantity</h3>
+          <p>No compromise on quality or quantity. Nutritious, filling meals made with love and fresh ingredients.</p>
+        </div>
+        <div class="feature-card" tabindex="0">
+          <span class="feature-icon">💚</span>
+          <h3>Wholesome & Healthy</h3>
+          <p>Balanced nutrition to power through your day. Fresh vegetables, quality grains, and healthy cooking.</p>
+        </div>
+        <div class="feature-card" tabindex="0">
+          <span class="feature-icon">⏰</span>
+          <h3>Right on Time</h3>
+          <p>Punctual delivery at 1 PM sharp. Your hunger doesn't wait, and neither do we!</p>
+        </div>
+        <div class="feature-card" tabindex="0">
+          <span class="feature-icon">❤️</span>
+          <h3>Made with Love</h3>
+          <p>Every meal is prepared with care and affection, just like your family would make it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Menu Section -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <h2 class="section-title">Your COMFORT Thali</h2>
+      <div class="thali-showcase">
+        <div class="thali-image">
+          <img src="asset/thali.png" alt="Comfort Thali" />
+        </div>
+        <div class="thali-details">
+          <h3>Customize Your Thali</h3>
+          <ul class="menu-items">
+            <li>
+              <div class="item-row">
+                <button onclick="prev('curry')" aria-label="Previous curry">⬅️</button>
+                <span id="curry">Matar Paneer & Chhole</span>
+                <button onclick="next('curry')" aria-label="Next curry">➡️</button>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <button onclick="prev('roti')" aria-label="Previous roti">⬅️</button>
+                <span id="roti">2 Chapatis</span>
+                <button onclick="next('roti')" aria-label="Next roti">➡️</button>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <button onclick="prev('dal')" aria-label="Previous dal">⬅️</button>
+                <span id="dal">Toor Dal</span>
+                <button onclick="next('dal')" aria-label="Next dal">➡️</button>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <button onclick="prev('rice')" aria-label="Previous rice">⬅️</button>
+                <span id="rice">Steamed Basmati Rice</span>
+                <button onclick="next('rice')" aria-label="Next rice">➡️</button>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <button onclick="prev('pickle')" aria-label="Previous pickle">⬅️</button>
+                <span id="pickle">Mango Pickle</span>
+                <button onclick="next('pickle')" aria-label="Next pickle">➡️</button>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <button onclick="prev('sweet')" aria-label="Previous sweet">⬅️</button>
+                <span id="sweet">Gulab Jamun</span>
+                <button onclick="next('sweet')" aria-label="Next sweet">➡️</button>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <span>Cool Fresh Curd</span>
+              </div>
+            </li>
+            <li>
+              <div class="item-row">
+                <span>Crisp Seasonal Salad</span>
+              </div>
+            </li>
+          </ul>
+          <div class="price" id="price">&nbsp;</div>
+          <button class="cta-button" onclick="orderNow()">Order This Thali</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- New Menu Section with Categories -->
+  <section class="new-menu">
+    <div class="container">
+      <h2 class="section-title">Our Menu</h2>
+      <div class="menu-content">
+        <!-- Left: Category List -->
+        <div class="category-list">
+          <ul>
+            <li onclick="showCategory('favourites')" id="favourites" tabindex="0">Favourites</li>
+            <li onclick="showCategory('rolls')" id="rolls" tabindex="0">Rolls</li>
+            <li onclick="showCategory('pasta')" id="pasta" tabindex="0">Pasta</li>
+            <li onclick="showCategory('sandwiches')" id="sandwiches" tabindex="0">Sandwiches</li>
+            <li onclick="showCategory('south-indian')" id="south-indian" tabindex="0">South Indian</li>
+            <li onclick="showCategory('chinese')" id="chinese" tabindex="0">Chinese</li>
+            <li onclick="showCategory('panthas')" id="panthas" tabindex="0">Panthas</li>
+            <li onclick="showCategory('rice-combos')" id="rice-combos" tabindex="0">Rice Combos</li>
+            <li onclick="showCategory('shakes-smoothies')" id="shakes-smoothies" tabindex="0">Shakes/Smoothies</li>
+            <li onclick="showCategory('north-indian')" id="north-indian" tabindex="0">North Indian</li>
+          </ul>
+        </div>
+        <!-- Right: Items for Selected Category -->
+        <div class="category-items" id="category-items">
+          <!-- Items will be dynamically loaded here -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Modal for Dish Details -->
+  <div class="modal" id="dish-modal" aria-modal="true" role="dialog">
+    <div class="modal-content" id="modal-content">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <img src="" alt="Dish Image" class="modal-img" id="modal-img" style="display:none;">
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="price" id="modal-price"></div>
+    </div>
+  </div>
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Happy Customers Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial" tabindex="0">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            "Finally found something that tastes exactly like home food! The thali is so complete and satisfying."
+          </p>
+          <p class="testimonial-author">- Priya S., IT Professional</p>
+        </div>
+        <div class="testimonial" tabindex="0">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            "Best lunch decision ever! Always on time, always delicious. It's become the highlight of my workday."
+          </p>
+          <p class="testimonial-author">- Raj M., Marketing Manager</p>
+        </div>
+        <div class="testimonial" tabindex="0">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            "The quality and quantity is amazing for the price. Feels like mom is taking care of my lunch!"
+          </p>
+          <p class="testimonial-author">- Anjali K., Designer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Lunch Brand</h3>
+          <p>Bringing the comfort of home-cooked meals to your workplace, one thali at a time.</p>
+          <p>🍛 BEST GHAR JAISA KHANA!</p>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <a href="tel:+919818874886">📞 +91 98188 74886</a>
+          <a href="mailto:maheshwarikalash@outlook.com">✉️ maheshwarikalash@outlook.com</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Lunch Brand" target="_blank">📍Delhi</a>
+        </div>
+        <div class="footer-section">
+          <h3>Delivery Time</h3>
+          <p>⏰ Sharp at 1:00 PM</p>
+          <p>📅 Monday to Friday</p>
+          <p>🏢 Direct to your desk</p>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <a href="#">📘 Facebook</a>
+          <a href="#">📷 Instagram</a>
+          <a href="#">🐦 Twitter</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 {trademark name}. Made with ❤️ for working professionals who deserve good food.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- SCRIPTS -->
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Order Now Popup
+    function orderNow() {
+      alert("🎉 Thank you for your interest! \n\n📞 Call us at +91 011 2553 2553 \n✉️ Email: name@domain.com \n\nOur team will contact you to set up your daily thali delivery! \n\n🍛 Get ready for the best lunch experience!");
+    }
+
+    // Thali Customization
+    const thaliOptions = {
+      curry: ["Matar Paneer & Chhole", "Kadhi Pakoda & Rajma", "Palak Paneer & Aloo Gobhi"],
+      roti: ["4 Tawa Butter Roti", "4 Tawa Roti", "3 Tandoori Butter Roti", "3 Tandoori Roti", "2 Lachha Parantha"],
+      dal: ["Chana Dal", "Dal Makhani", "Dal Tadka"],
+      rice: ["Steamed Basmati Rice", "Jeera Rice", "Veg Pulao"],
+      pickle: ["Mango Pickle", "Mixed Veg Pickle", "Lemon Pickle"],
+      sweet: ["Gulab Jamun", "Kheer", "Besan Laddu"]
+    };
+    const currentIndex = { curry: 0, roti: 0, dal: 0, rice: 0, pickle: 0, sweet: 0 };
+    const prices = {
+      curry: [40, 35, 38],
+      roti: [12, 10, 18, 15, 20],
+      dal: [25, 20, 22],
+      rice: [20, 25, 28],
+      pickle: [0, 0, 0],
+      sweet: [15, 20, 18]
+    };
+    function updateItem(id) {
+      document.getElementById(id).textContent = thaliOptions[id][currentIndex[id]];
+      updateTotalPrice();
+    }
+    function next(id) {
+      currentIndex[id] = (currentIndex[id] + 1) % thaliOptions[id].length;
+      updateItem(id);
+    }
+    function prev(id) {
+      currentIndex[id] = (currentIndex[id] - 1 + thaliOptions[id].length) % thaliOptions[id].length;
+      updateItem(id);
+    }
+    function updateTotalPrice() {
+      let total = 0;
+      total += prices.curry[currentIndex.curry];
+      total += prices.roti[currentIndex.roti];
+      total += prices.dal[currentIndex.dal];
+      total += prices.rice[currentIndex.rice];
+      total += prices.sweet[currentIndex.sweet];
+      document.getElementById("price").textContent = `₹${total} only!`;
+    }
+    // Initialize thali price on load
+    document.addEventListener('DOMContentLoaded', function () {
+      updateTotalPrice();
+    });
+
+    // Menu Items with images for modal
+    const menuItems = {
+      favourites: [
+        { name: "Dal Makhani Chawal", description: "Classic dal makhani with steamed rice.", price: "₹150", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Rajma Chawal", description: "Kidney beans cooked with spices, served with rice.", price: "₹140", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Chole Bhature", description: "Chickpeas curry served with fluffy bhature.", price: "₹180", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Masala Dosa", description: "Crispy dosa filled with spiced potato.", price: "₹80", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Grilled Veg Sandwich", description: "Veggies grilled to perfection, served in toasted bread.", price: "₹100", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Chili Chicken with Fried Rice", description: "Spicy chicken served with fried rice.", price: "₹220", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Aloo Paratha", description: "Stuffed flatbread with spiced potatoes.", price: "₹90", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Pasta Arrabbiata", description: "Pasta with a spicy tomato-based sauce.", price: "₹180", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Lemon Rice", description: "Rice with a tangy lemon flavor.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      rolls: [
+        { name: "Chicken Roll", description: "Grilled chicken wrapped in soft paratha.", price: "₹120", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Paneer Roll", description: "Cottage cheese with veggies, wrapped in paratha.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Egg Roll", description: "Eggs, onions, and sauces in a paratha.", price: "₹100", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Kathi Roll", description: "Grilled chicken or paneer wrapped in paratha with onions and sauces.", price: "₹140", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Mutton Roll", description: "Tender mutton wrapped in paratha with spiced veggies.", price: "₹160", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Spring Roll", description: "Crispy rolls filled with vegetables and served with dipping sauce.", price: "₹100", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      pasta: [
+        { name: "Spaghetti Aglio e Olio", description: "Spaghetti with garlic, olive oil, and chili flakes.", price: "₹180", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Penne Arrabbiata", description: "Penne pasta in a spicy tomato sauce.", price: "₹170", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Mac and Cheese", description: "Macaroni in a creamy cheese sauce.", price: "₹200", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Fettuccine Alfredo", description: "Fettuccine pasta in a creamy white sauce.", price: "₹220", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      sandwiches: [
+        { name: "Grilled Cheese Sandwich", description: "Cheese sandwich with grilled crispy bread.", price: "₹90", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Veg Club Sandwich", description: "Lettuce, tomato, and cucumber in toasted bread.", price: "₹120", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Chicken Club Sandwich", description: "Grilled chicken with lettuce and mayo in toasted bread.", price: "₹150", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Veg Cheese Sandwich", description: "Grilled vegetables and cheese in toasted bread.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      "south-indian": [
+        { name: "Masala Dosa", description: "Crispy dosa filled with spiced potato.", price: "₹80", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Idli Sambar", description: "Steamed rice cakes with tangy sambar.", price: "₹60", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Vada", description: "Fried doughnut-shaped lentil snack.", price: "₹50", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Lemon Rice", description: "Rice with a tangy lemon flavor.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Coconut Rice", description: "Rice cooked with coconut and spices.", price: "₹120", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      chinese: [
+        { name: "Chili Chicken", description: "Spicy fried chicken in a tangy sauce.", price: "₹150", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Veg Manchurian", description: "Deep-fried veggie balls in a spicy sauce.", price: "₹140", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Veg Fried Rice", description: "Fried rice with mixed vegetables.", price: "₹130", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Chicken Schezwan Noodles", description: "Spicy noodles with grilled chicken.", price: "₹180", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      panthas: [
+        { name: "Paneer Paratha", description: "Stuffed flatbread with cottage cheese.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Gobi Paratha", description: "Stuffed flatbread with spiced cauliflower.", price: "₹90", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Aloo Paratha", description: "Stuffed flatbread with spiced potatoes.", price: "₹90", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      "rice-combos": [
+        { name: "Dal Makhani Chawal", description: "Dal makhani served with steamed rice.", price: "₹150", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Rajma Chawal", description: "Kidney beans curry with rice.", price: "₹140", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Chhole Chawal", description: "Chickpeas curry served with rice.", price: "₹160", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Lemon Rice", description: "Rice with a tangy lemon flavor.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      "shakes-smoothies": [
+        { name: "Mango Smoothie", description: "Fresh mangoes blended with yogurt.", price: "₹90", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Banana Shake", description: "Bananas with milk and ice cream.", price: "₹100", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Strawberry Smoothie", description: "Fresh strawberries blended with yogurt.", price: "₹110", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Chocolate Milkshake", description: "Chocolate and milk blended with ice cream.", price: "₹120", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ],
+      "north-indian": [
+        { name: "Chhole Bhature", description: "Chickpeas curry served with fluffy bhature.", price: "₹180", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Paneer Tikka", description: "Grilled paneer cubes with spices.", price: "₹200", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Vada Pav", description: "Spicy potato patty served in a pav bun.", price: "₹50", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Pav Bhaji", description: "Spicy mashed vegetable curry served with buttered pav.", price: "₹120", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Butter Chicken", description: "Rich and creamy chicken curry.", price: "₹250", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Tandoori Roti", description: "Flatbread cooked in a clay oven.", price: "₹30", img: "https://i.imgur.com/1Q9Z1ZB.png" },
+        { name: "Aloo Paratha", description: "Stuffed flatbread with spiced potatoes.", price: "₹90", img: "https://i.imgur.com/1Q9Z1ZB.png" }
+      ]
+    };
+
+    // Show category and add modal triggers
+    function showCategory(category) {
+      // Remove 'active' class from all categories
+      const allCategories = document.querySelectorAll('.category-list li');
+      allCategories.forEach(item => { item.classList.remove('active'); });
+      // Add 'active' class to the clicked category
+      const selectedCategory = document.getElementById(category);
+      selectedCategory.classList.add('active');
+      // Load items for the selected category
+      const items = menuItems[category];
+      const categoryItemsDiv = document.getElementById('category-items');
+      categoryItemsDiv.innerHTML = '';
+      let content = '';
+      items.forEach((item, idx) => {
+        content += `
+          <div class="category-item" tabindex="0" onclick="showModal('${category}',${idx})" onkeypress="if(event.key==='Enter'){showModal('${category}',${idx})}">
+            <div>
+              <h3>${item.name}</h3>
+              <p>${item.description}</p>
+            </div>
+            <div class="price">${item.price}</div>
+          </div>
+        `;
+      });
+      categoryItemsDiv.innerHTML = content;
+    }
+    // Show modal for dish
+    function showModal(category, idx) {
+      const item = menuItems[category][idx];
+      document.getElementById('modal-title').textContent = item.name;
+      document.getElementById('modal-desc').textContent = item.description;
+      document.getElementById('modal-price').textContent = item.price;
+      const img = document.getElementById('modal-img');
+      if (item.img) {
+        img.src = item.img;
+        img.style.display = 'block';
+      } else {
+        img.style.display = 'none';
+      }
+      document.getElementById('dish-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('dish-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    // Close modal on ESC
+    document.addEventListener('keydown', function (e) {
+      if (e.key === "Escape") closeModal();
+    });
+    // Load default category on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      showCategory('favourites');
+    });
+
+    // Animate features and testimonials on scroll
+    function animateOnScroll() {
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+      document.querySelectorAll('.feature-card, .testimonial').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s cubic-bezier(.4,0,.2,1)';
+        observer.observe(el);
+      });
+    }
+    animateOnScroll();
+  </script>
+</body>
+
+</html>
