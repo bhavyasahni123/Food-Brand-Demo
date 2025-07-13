@@ -1,0 +1,643 @@
+/* Base styles */
+:root {
+  --color-bg: #f8f5f0;
+  /* soft warm beige, soothing and food-friendly */
+  --color-text: #232323;
+  --color-card-bg: #fff;
+  --color-card-shadow: #5a3a1b;
+  --color-sidebar-bg: none;
+  --color-sidebar-text: #fff;
+  --color-brand-hover: #232323;
+  --color-brand-hover-text: #ffca28;
+  --color-footer: #777;
+  --color-modal-bg: #fff;
+  --color-modal-text: #232323;
+  --color-overlay: rgba(17, 17, 17, 0.75);
+
+  /* Gradients for light theme */
+  --gradient-hero: linear-gradient(90deg,
+      #8b4513 0%,
+      /* Saddle brown */
+      #d2691e 40%,
+      /* Chocolate */
+      #cd853f 80%,
+      /* Peru */
+      #deb887 100%
+      /* Burly wood */
+    );
+  --gradient-welcome: linear-gradient(90deg,
+      #8b4513 0%,
+      /* Saddle brown */
+      #d2691e 40%,
+      /* Chocolate */
+      #cd853f 80%,
+      /* Peru */
+      #deb887 100%
+      /* Burly wood */
+    );
+  --gradient-modern-heading: linear-gradient(90deg,
+      #8b4513 0%,
+      /* Saddle brown */
+      #d2691e 40%,
+      /* Chocolate */
+      #cd853f 80%,
+      /* Peru */
+      #deb887 100%
+      /* Burly wood */
+    );
+  --gradient-brands: linear-gradient(90deg,
+      #8b4513 0%,
+      /* Saddle brown */
+      #d2691e 40%,
+      /* Chocolate */
+      #cd853f 80%,
+      /* Peru */
+      #deb887 100%
+      /* Burly wood */
+    );
+}
+
+.dark-theme {
+  --color-bg: #181818;
+  --color-text: #f3f3f3;
+  --color-card-bg: #232323;
+  --color-card-shadow: #2d1a09;
+  --color-sidebar-bg: #181818;
+  --color-sidebar-text: #ffca28;
+  --color-brand-hover: #333;
+  --color-brand-hover-text: #ffca28;
+  --color-footer: #aaa;
+  --color-modal-bg: #232323;
+  --color-modal-text: #fff;
+  --color-overlay: rgba(17, 17, 17, 0.85);
+
+  /* Gradients for dark theme (keep as before, more pastel) */
+  --gradient-hero: linear-gradient(90deg, #ff8a00, #e52e71, #42e695, #4776e6);
+  --gradient-welcome: linear-gradient(90deg,
+      #ff8a00,
+      #e52e71,
+      #4776e6,
+      #ffca28);
+  --gradient-modern-heading: linear-gradient(90deg, #ff8a00, #e52e71, #4776e6);
+  --gradient-brands: linear-gradient(90deg, #ff8a00, #e52e71, #1bd7b8, #0037ff);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.hover-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 100vh;
+  z-index: 998;
+}
+
+/* Remove the .hover-zone::after arrow */
+.hover-zone::after {
+  display: none;
+}
+
+.sidebar {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  background: transparent;
+  color: var(--color-sidebar-text);
+  padding: 30px 0 30px 0;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: none;
+  z-index: 1001;
+  border: none;
+  left: 0;
+  top: 0;
+  transition: width 0.25s cubic-bezier(0.39, 0.58, 0.57, 1), background 0.18s;
+}
+
+.sidebar:hover,
+.sidebar:focus-within {
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+  background: none;
+  transition: width 0.25s cubic-bezier(0.39, 0.58, 0.57, 1), background 0.18s;
+}
+
+.sidebar .logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffca28;
+  letter-spacing: 1px;
+  margin-left: 18px;
+  margin-bottom: 10px;
+  opacity: 1;
+  /* always visible */
+  transition: opacity 0.18s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.sidebar:hover .logo,
+.sidebar:focus-within .logo {
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sidebar nav a {
+  color: var(--color-sidebar-text);
+  text-decoration: none;
+  padding: 12px 16px 12px 18px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s, box-shadow 0.25s,
+    transform 0.18s cubic-bezier(0.39, 0.58, 0.57, 1);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar nav a::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.18s;
+  z-index: 0;
+}
+
+.sidebar nav a:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+      #ffca28cc 0 30px,
+      transparent 60px);
+  transition: opacity 0.18s;
+}
+
+.sidebar nav a i {
+  margin-right: 0;
+  font-size: 20px;
+  min-width: 24px;
+  text-align: center;
+  transition: color 0.2s, text-shadow 0.2s;
+  color: #232323;
+  /* black for light mode */
+}
+
+.dark-theme .sidebar nav a i {
+  color: #ffca28;
+  /* gold for dark mode */
+}
+
+.sidebar nav a span {
+  opacity: 0;
+  margin-left: 0;
+  max-width: 0;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  transition: opacity 0.18s, margin-left 0.18s, max-width 0.18s;
+}
+
+.sidebar:hover nav a span,
+.sidebar:focus-within nav a span {
+  opacity: 1;
+  margin-left: 12px;
+  max-width: 160px;
+  transition-delay: 0.08s;
+}
+
+.sidebar nav a:hover {
+  background: var(--color-brand-hover);
+  color: var(--color-brand-hover-text);
+  box-shadow: 0 0 16px 2px #ffca2880;
+  transform: translateX(12px) scale(1.04);
+}
+
+.sidebar nav a:hover i {
+  color: #ffca28;
+  text-shadow: 0 0 8px #ffca28cc;
+}
+
+.sidebar::after {
+  display: none !important;
+}
+
+/* Overlay for darkening the page */
+.page-darken-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(to right,
+      rgba(17, 17, 17, 0.75) 0%,
+      rgba(17, 17, 17, 0.45) 25%,
+      rgba(17, 17, 17, 0.2) 55%,
+      rgba(17, 17, 17, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.39, 0.58, 0.57, 1);
+  /* Animation for gradient movement */
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: none;
+}
+
+.sidebar:hover~.page-darken-overlay,
+.sidebar:focus-within~.page-darken-overlay {
+  display: block;
+  opacity: 1;
+  animation: gradient-slide-in-ltr 0.45s cubic-bezier(0.39, 0.58, 0.57, 1) forwards;
+}
+
+@keyframes gradient-slide-in-ltr {
+  from {
+    background-position: 100% 0;
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    background-position: 0 0;
+    opacity: 1;
+  }
+}
+
+.main {
+  margin-left: 0;
+  padding: 40px;
+  transition: none;
+  color: var(--color-text);
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero p {
+  color: #232323;
+  /* black for light mode */
+  transition: color 0.2s;
+}
+
+.dark-theme .hero p {
+  color: #fff;
+  /* white for dark mode */
+}
+
+/*(hero) */
+.animated-text {
+  font-size: 3em;
+  background: var(--gradient-hero);
+  background-size: 200% 200%;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Welcome main title ("Foodies, Assemble!") */
+.welcome-main-title {
+  position: relative;
+  cursor: pointer;
+  font-family: "Montserrat", cursive, sans-serif;
+  font-size: 3.2em;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  background: var(--gradient-welcome);
+  background-size: 400% 400%;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pastel-gradient-move 6s ease-in-out infinite alternate;
+  text-shadow: 0 6px 32px #ffca2840, 0 2px 0 #fff2;
+  filter: drop-shadow(0 4px 16px #e52e7133);
+  letter-spacing: 4px;
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 18px 36px 18px 36px;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #ffca2822, 0 1px 0 #fff2;
+  background-color: rgba(221, 43, 43, 0.533);
+  /* Fun font for extra pop */
+  font-family: "Montserrat", "Comic Sans MS", cursive, sans-serif;
+}
+
+.welcome-main-title:hover {
+  animation: hover-bounce 0.5s ease forwards;
+  box-shadow: 0 8px 48px rgba(229, 46, 113, 0.2);
+}
+
+/* New keyframes for the bounce effect */
+@keyframes hover-bounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.07) rotate(-2deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Smooth hover animation for "Foodies, Assemble!" box */
+.welcome-main-title {
+  transition: transform 0.3s ease;
+}
+
+body:not(.dark-theme) .welcome-main-title {
+  background-color: #935300;
+  /* slightly darker than light theme background */
+}
+
+@media (max-width: 600px) {
+  .welcome-main-title {
+    font-size: 2em;
+    padding: 12px 10px;
+  }
+
+  .welcome-main-title .cloud-tip {
+    font-size: 0.85em;
+    top: -38px;
+  }
+}
+
+/* "THE CULINARY JOURNEY STARTS HERE." */
+.modern-heading {
+  font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--gradient-modern-heading);
+  background-size: 200% 200%;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.5em;
+  margin: 10px 0 6px 0;
+}
+
+/* Popup modal styles */
+.brand-modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-overlay);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@keyframes popupIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes box-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 80px;
+  font-size: 0.95em;
+  color: var(--color-footer);
+}
+
+
+.royal-food-font {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px;
+  z-index: 9999;
+  background: #ffca28;
+  color: #232323;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Add or update these styles */
+.welcome-section {
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-main-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modern-heading {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.welcome-section a {
+  margin: 1rem auto;
+  display: inline-block;
+}
+
+.title-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.welcome-main-title {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add order-button styles */
+.order-button {
+  display: inline-block;
+  background-color: #ffca28;
+  color: #232323;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.3s;
+  margin-top: 1rem;
+}
+
+.order-button:hover,
+.order-button:focus {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 10px 0;
+    gap: 10px;
+    justify-content: space-around;
+  }
+
+  .sidebar .logo {
+    margin-left: 10px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  .sidebar nav a {
+    padding: 8px 10px;
+    font-size: 0.9em;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* If hover triggers are not ideal on touch devices, force full width on sidebar focus/hover */
+  .sidebar:hover,
+  .sidebar:focus-within {
+    width: 100%;
+  }
+
+  .main {
+    padding: 20px;
+    margin-top: 70px;
+    /* space for fixed top nav */
+  }
+
+  .hero h1 {
+    font-size: 2em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+
+}
+
+/* Ensure elements with .box-fade-in start hidden */
+.box-fade-in {
+  opacity: 0;
+}
+
+/* When .animate is added, run the startup animation */
+.box-fade-in.animate {
+  animation: box-fade-in 0.7s cubic-bezier(0.39, 0.58, 0.57, 1) forwards;
+}
+
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -100;
+  opacity: 1; /* keep full brightness, we'll darken via overlay */
+  pointer-events: none;
+}
+
+#videoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -99;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.75) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+  ;
+  opacity: 70%;
+}
+

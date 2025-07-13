@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Scale-In Animation Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Main Animation Classes */
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Card Styling */
+        .demo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover .card-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .demo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .demo-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Different Animation Variations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .rotate-in {
+            opacity: 0;
+            transform: rotate(-10deg) scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rotate-in.visible {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Controls */
+        .controls {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .demo-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Card Scale-In Animation Demo</h1>
+            <p>Scroll down to see cards animate in with scale effect, just like in your original design</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn" onclick="resetAnimations()">Reset Animations</button>
+            <button class="control-btn" onclick="triggerAllAnimations()">Trigger All</button>
+        </div>
+
+        <!-- Main Scale-In Animation (Original) -->
+        <div class="section-header">
+            <h2>Original Scale-In Effect</h2>
+            <p>This is the exact animation from your food website</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="demo-card scale-in">
+                <div class="card-icon">🍕</div>
+                <h3>Delicious Pizza</h3>
+                <p>Experience the perfect blend of crispy crust, rich sauce, and melted cheese that creates an unforgettable taste sensation.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">🍔</div>
+                <h3>Gourmet Burger</h3>
+                <p>Juicy beef patty with fresh vegetables and special sauce, served on a toasted artisan bun for the ultimate burger experience.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">🍜</div>
+                <h3>Ramen Bowl</h3>
+                <p>Authentic Japanese ramen with rich broth, tender noodles, and carefully selected toppings that warm your soul.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">🥗</div>
+                <h3>Fresh Salad</h3>
+                <p>Crisp greens, seasonal vegetables, and house-made dressing combine to create a refreshing and healthy meal option.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">🍰</div>
+                <h3>Sweet Dessert</h3>
+                <p>Indulgent desserts crafted with premium ingredients to provide the perfect sweet ending to your meal.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">☕</div>
+                <h3>Premium Coffee</h3>
+                <p>Expertly roasted coffee beans brewed to perfection, delivering a rich and aromatic experience in every cup.</p>
+            </div>
+        </div>
+
+        <!-- Other Animation Variations -->
+        <div class="section-header">
+            <h2>Animation Variations</h2>
+            <p>Different animation styles for comparison</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="demo-card fade-in">
+                <div class="card-icon">🎨</div>
+                <h3>Fade In</h3>
+                <p>Simple fade in animation with upward movement for a clean, professional appearance.</p>
+            </div>
+
+            <div class="demo-card slide-in-left">
+                <div class="card-icon">⬅️</div>
+                <h3>Slide Left</h3>
+                <p>Cards slide in from the left side, creating a dynamic horizontal movement effect.</p>
+            </div>
+
+            <div class="demo-card slide-in-right">
+                <div class="card-icon">➡️</div>
+                <h3>Slide Right</h3>
+                <p>Cards slide in from the right side, providing balance to the left sliding animation.</p>
+            </div>
+
+            <div class="demo-card rotate-in">
+                <div class="card-icon">🔄</div>
+                <h3>Rotate In</h3>
+                <p>Cards rotate and scale in simultaneously for a more playful and dynamic entrance effect.</p>
+            </div>
+        </div>
+
+        <!-- More Cards for Scrolling -->
+        <div class="section-header">
+            <h2>Extended Demo</h2>
+            <p>More cards to demonstrate the staggered animation effect</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="demo-card scale-in">
+                <div class="card-icon">🌟</div>
+                <h3>Premium Service</h3>
+                <p>Top-tier service quality that exceeds expectations and creates memorable experiences for every customer.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">🚀</div>
+                <h3>Fast Delivery</h3>
+                <p>Lightning-fast delivery service ensuring your order arrives hot, fresh, and exactly when you need it.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">💎</div>
+                <h3>Quality Ingredients</h3>
+                <p>Only the finest, freshest ingredients sourced from trusted suppliers to guarantee exceptional taste and quality.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">👨‍🍳</div>
+                <h3>Expert Chefs</h3>
+                <p>Skilled culinary professionals with years of experience creating dishes that delight and inspire food lovers.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">🏆</div>
+                <h3>Award Winning</h3>
+                <p>Recognized excellence in culinary arts with multiple awards and accolades from industry professionals.</p>
+            </div>
+
+            <div class="demo-card scale-in">
+                <div class="card-icon">❤️</div>
+                <h3>Made with Love</h3>
+                <p>Every dish is prepared with passion, care, and attention to detail that you can taste in every bite.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered delay for multiple cards
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); // 150ms delay between each card
+                }
+            });
+        }, observerOptions);
+
+        // Function to reset all animations
+        function resetAnimations() {
+            const animatedElements = document.querySelectorAll('.scale-in, .fade-in, .slide-in-left, .slide-in-right, .rotate-in');
+            animatedElements.forEach(el => {
+                el.classList.remove('visible');
+                // Re-observe the element
+                observer.observe(el);
+            });
+        }
+
+        // Function to trigger all animations at once
+        function triggerAllAnimations() {
+            const animatedElements = document.querySelectorAll('.scale-in, .fade-in, .slide-in-left, .slide-in-right, .rotate-in');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, index * 100);
+            });
+        }
+
+        // Initialize observer when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all animated elements
+            const animatedElements = document.querySelectorAll('.scale-in, .fade-in, .slide-in-left, .slide-in-right, .rotate-in');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add some additional interactive features
+            const cards = document.querySelectorAll('.demo-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+
+        // Performance optimization - throttle scroll events
+        let ticking = false;
+        function updateOnScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Additional scroll-based animations can go here
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateOnScroll);
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'r' || e.key === 'R') {
+                resetAnimations();
+            }
+            if (e.key === 't' || e.key === 'T') {
+                triggerAllAnimations();
+            }
+        });
+
+        // Console instructions
+        console.log('🎮 Demo Controls:');
+        console.log('- Press "R" to reset animations');
+        console.log('- Press "T" to trigger all animations');
+        console.log('- Click cards for interaction effect');
+        console.log('- Scroll to see animations in action');
+    </script>
+</body>
+</html>
