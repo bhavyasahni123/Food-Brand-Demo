@@ -64,11 +64,4 @@ These help with testing ideas before they’re merged into final versions.
 ---
 
 🌐 Live Preview
-Coming Soon – Add GitHub Pages or Netlify/Vercel link here.
-
-👨‍💻 Author
-Developed with passion by [Your Name]
-Feel free to contribute, fork, or open issues!
-
-🙌 Contributions
-Contributions are welcome! If you have new ideas for sub-brand layouts, animations, or UI enhancements, feel free to submit a pull request or open an issue.
+Coming Soon 
